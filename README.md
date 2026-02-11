@@ -120,5 +120,5 @@ Edit CSS variables in `styles.css` (letterhead brand colors):
 
 ## License
 
-© 2024 Mudau Makondelele Attorneys. All rights reserved.
+© 2026 Mudau Makondelele Attorneys. All rights reserved.
 
