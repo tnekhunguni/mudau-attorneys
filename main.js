@@ -1,5 +1,5 @@
 /**
- * Mudau Makonde Attorneys - Main JavaScript
+ * Mudau Makondelele Attorneys - Main JavaScript
  * Handles mobile menu, form validation, and interactive elements
  */
 
