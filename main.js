@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 emailBody += 'Message:%0D%0A' + encodeURIComponent(message);
                 
                 // Construct mailto link
-                const mailtoLink = 'mailto:takalaninekhunguni@gmail.com?subject=' + 
+                const mailtoLink = 'mailto:info@mudauattorneys.com?subject=' + 
                     encodeURIComponent('Contact Form: ' + subjectText) + 
                     '&body=' + emailBody;
                 
@@ -107,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 // Show confirmation message
                 setTimeout(function() {
-                    alert('Thank you for your message. Your email client should open. If it doesn\'t, please email us directly at takalaninekhunguni@gmail.com');
+                    alert('Thank you for your message. Your email client should open. If it doesn\'t, please email us directly at info@mudauattorneys.com');
                 }, 500);
                 
                 // Note: For production, replace this with backend form handler

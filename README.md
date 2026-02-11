@@ -60,7 +60,7 @@ mudau-makonde-attorneys/
    - Verify all service descriptions match your practice
 
 4. **Form Integration**:
-   - The contact form currently uses mailto: to send emails to takalaninekhunguni@gmail.com
+   - The contact form currently uses mailto: to send emails to info@mudauattorneys.com
    - This opens the user's email client with a pre-filled message
    - For production WordPress site, integrate with:
      - WordPress contact form plugin (Contact Form 7, WPForms)
