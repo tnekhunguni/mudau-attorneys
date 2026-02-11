@@ -6,13 +6,16 @@
 /* ===== GOOGLE FONTS ===== */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* ===== CSS VARIABLES ===== */
+/* ===== CSS VARIABLES (Letterhead Brand Colors) ===== */
 :root {
-    --navy: #0A1A3B;
-    --gold: #C9A14A;
+    --primary: #1A1A1A;
+    --accent: #B22222;
     --charcoal: #1E1E1E;
     --light-grey: #F5F6F8;
     --white: #FFFFFF;
+    /* Legacy aliases for gradual migration */
+    --navy: var(--primary);
+    --gold: var(--accent);
     
     --font-heading: 'Playfair Display', serif;
     --font-body: 'Inter', sans-serif;
@@ -93,7 +96,7 @@ ul {
     position: sticky;
     top: 0;
     background-color: var(--white);
-    box-shadow: 0 2px 10px rgba(10, 26, 59, 0.1);
+    box-shadow: 0 2px 10px rgba(26, 26, 26, 0.08);
     z-index: 1000;
     padding: var(--spacing-sm) 0;
 }
@@ -111,8 +114,23 @@ ul {
     font-family: var(--font-heading);
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--navy);
+    color: var(--primary);
     letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+}
+
+.logo:hover {
+    color: var(--primary);
+}
+
+.logo img {
+    height: 56px;
+    width: auto;
+    max-width: 320px;
+    object-fit: contain;
 }
 
 .nav-menu {
@@ -177,9 +195,9 @@ ul {
 }
 
 .btn-primary:hover {
-    background-color: #B8913F;
+    background-color: #8B1A1A;
     transform: translateY(-2px);
-    box-shadow: 0 4px 12px rgba(201, 161, 74, 0.3);
+    box-shadow: 0 4px 12px rgba(178, 34, 34, 0.35);
 }
 
 .btn-outline {
@@ -200,7 +218,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, rgba(10, 26, 59, 0.85) 0%, rgba(10, 26, 59, 0.75) 100%),
+    background: linear-gradient(135deg, rgba(26, 26, 26, 0.88) 0%, rgba(26, 26, 26, 0.78) 100%),
                 url('assets/images/hero.jpg') center/cover no-repeat;
     color: var(--white);
     text-align: center;
@@ -479,6 +497,14 @@ ul {
     margin: 0;
 }
 
+.footer-tagline {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--accent) !important;
+    margin-bottom: var(--spacing-xs) !important;
+}
+
 .footer-links {
     display: flex;
     justify-content: center;
@@ -497,6 +523,11 @@ ul {
 
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 968px) {
+    .logo img {
+        height: 44px;
+        max-width: 200px;
+    }
+
     .nav-menu {
         position: fixed;
         left: -100%;
