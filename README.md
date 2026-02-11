@@ -21,8 +21,8 @@ mudau-makonde-attorneys/
 ## Brand Identity
 
 ### Colors
-- **Deep Navy**: #0A1A3B (Primary brand color)
-- **Gold Accent**: #C9A14A (Accents, buttons, highlights)
+- **Primary (Black)**: #1A1A1A (Headings, footer, primary elements)
+- **Accent (Red)**: #B22222 (Buttons, links, highlights – from letterhead)
 - **Charcoal**: #1E1E1E (Text color)
 - **Light Grey**: #F5F6F8 (Section backgrounds)
 - **White**: #FFFFFF (Main background)
@@ -97,11 +97,11 @@ This site is built with clean HTML/CSS/JS that can easily be converted to WordPr
 ## Customization
 
 ### Changing Colors
-Edit CSS variables in `styles.css`:
+Edit CSS variables in `styles.css` (letterhead brand colors):
 ```css
 :root {
-    --navy: #0A1A3B;
-    --gold: #C9A14A;
+    --primary: #1A1A1A;
+    --accent: #B22222;
     /* ... */
 }
 ```
