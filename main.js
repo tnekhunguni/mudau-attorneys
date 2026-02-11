@@ -84,34 +84,8 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             if (isValid) {
-                // Get additional form fields
-                const phone = document.getElementById('phone').value.trim();
-                const subjectText = document.getElementById('subject').options[document.getElementById('subject').selectedIndex].text;
-                
-                // Construct email body
-                let emailBody = 'Name: ' + encodeURIComponent(name) + '%0D%0A';
-                emailBody += 'Email: ' + encodeURIComponent(email) + '%0D%0A';
-                if (phone) {
-                    emailBody += 'Phone: ' + encodeURIComponent(phone) + '%0D%0A';
-                }
-                emailBody += 'Subject: ' + encodeURIComponent(subjectText) + '%0D%0A%0D%0A';
-                emailBody += 'Message:%0D%0A' + encodeURIComponent(message);
-                
-                // Construct mailto link
-                const mailtoLink = 'mailto:info@mudauattorneys.com?subject=' + 
-                    encodeURIComponent('Contact Form: ' + subjectText) + 
-                    '&body=' + emailBody;
-                
-                // Open email client
-                window.location.href = mailtoLink;
-                
-                // Show confirmation message
-                setTimeout(function() {
-                    alert('Thank you for your message. Your email client should open. If it doesn\'t, please email us directly at info@mudauattorneys.com');
-                }, 500);
-                
-                // Note: For production, replace this with backend form handler
-                // (WordPress: Contact Form 7, WPForms, or custom PHP handler)
+                // If the form is valid, submit it to the server-side handler
+                contactForm.submit();
             } else {
                 alert('Please correct the following errors:\n\n' + errorMessage);
             }
