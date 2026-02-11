@@ -9,7 +9,7 @@ The website currently uses high-quality stock images from **Unsplash**:
    - Used on: All page hero sections
    - URL: https://images.unsplash.com/photo-1589829545856-d10d557cf95f
 
-2. **makonde-mudau.png** - Professional headshot of Makonde Mudau
+2. **makonde-mudau.png** - Professional headshot of Makondelele Mudau
    - Source: Local file (to be provided)
    - Used on: Homepage and About page
    - Dimensions: 800x1000px (portrait orientation recommended)
@@ -17,7 +17,7 @@ The website currently uses high-quality stock images from **Unsplash**:
 
 ## Required Local Images
 
-1. **makonde-mudau.png** - Professional headshot of Makonde Mudau
+1. **makonde-mudau.png** - Professional headshot of Makondelele Mudau
    - **REQUIRED**: Place this file in `assets/images/` folder
    - Dimensions: 800x1000px (portrait orientation recommended)
    - Format: PNG
