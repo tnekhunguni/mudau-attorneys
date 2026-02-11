@@ -1,5 +1,5 @@
 <?php
-// Simple contact form handler for Mudau Makonde Attorneys
+// Simple contact form handler for Mudau Makondelele Attorneys
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     header('Location: contact.html');
@@ -50,7 +50,7 @@ if ($phone !== '') {
 $body .= "Subject: {$subjectText}\r\n\r\n";
 $body .= "Message:\r\n{$message}\r\n";
 
-$headers   = "From: Mudau Makonde Attorneys Website <no-reply@mudauattorneys.com>\r\n";
+$headers   = "From: Mudau Makondelele Attorneys Website <no-reply@mudauattorneys.com>\r\n";
 $headers  .= "Reply-To: {$name} <{$email}>\r\n";
 $headers  .= "Content-Type: text/plain; charset=UTF-8\r\n";
 

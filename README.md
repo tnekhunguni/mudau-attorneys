@@ -1,6 +1,6 @@
-# Mudau Makonde Attorneys Website
+# Mudau Makondelele Attorneys Website
 
-A modern, premium WordPress-compatible website for Mudau Makonde Attorneys, a law firm in South Africa.
+A modern, premium WordPress-compatible website for Mudau Makondelele Attorneys, a law firm in South Africa.
 
 ## Project Structure
 
@@ -60,7 +60,7 @@ mudau-makonde-attorneys/
    - Verify all service descriptions match your practice
 
 4. **Form Integration**:
-   - The contact form currently uses mailto: to send emails to info@mudauattorneys.com
+   - The contact form submits to send-contact.php, which emails info@mudauattorneys.com
    - This opens the user's email client with a pre-filled message
    - For production WordPress site, integrate with:
      - WordPress contact form plugin (Contact Form 7, WPForms)
@@ -120,5 +120,5 @@ Edit CSS variables in `styles.css`:
 
 ## License
 
-© 2024 Mudau Makonde Attorneys. All rights reserved.
+© 2024 Mudau Makondelele Attorneys. All rights reserved.
 
