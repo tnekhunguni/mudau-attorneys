@@ -1,0 +1,149 @@
+---
+import { Image } from 'astro:assets';
+import logo from '../assets/logo.png';
+import Icon from './Icon.astro';
+import { firm } from '../data/site';
+
+const links = [
+  { href: '/practice-areas/', label: 'Practice areas' },
+  { href: '/about/', label: 'About' },
+  { href: '/organisations/', label: 'For organisations' },
+  { href: '/contact/', label: 'Contact' },
+];
+const path = Astro.url.pathname;
+---
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="brand" href="/">
+      <Image src={logo} alt="" width={56} height={56} densities={[1, 2]} loading="eager" />
+      <span class="wordmark">
+        <span class="wm-name">Mudau Makondelele</span>
+        <span class="wm-sub">Attorneys</span>
+      </span>
+    </a>
+
+    <nav class="nav" aria-label="Main">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-list">
+        <span class="t-open"><Icon name="menu" /></span>
+        <span class="t-close"><Icon name="close" /></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <ul id="nav-list" class="nav-list">
+        {links.map((l) => (
+          <li><a href={l.href} aria-current={path.startsWith(l.href) ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+        <li class="nav-call">
+          <a class="btn btn-red" href={firm.phones[0].href}><Icon name="phone" />{firm.phones[0].label}</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div class="letter-rule" aria-hidden="true"></div>
+</header>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.nav-toggle');
+  const list = document.getElementById('nav-list');
+  if (toggle && list) {
+    const set = (open: boolean) => {
+      toggle.setAttribute('aria-expanded', String(open));
+      list.classList.toggle('open', open);
+    };
+    toggle.addEventListener('click', () => set(toggle.getAttribute('aria-expanded') !== 'true'));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+  }
+</script>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: var(--paper);
+  }
+  .bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1.5rem;
+    min-height: 4.75rem;
+  }
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    text-decoration: none;
+    color: var(--ink);
+  }
+  .brand img { width: 3.1rem; height: auto; }
+  .wordmark { display: flex; flex-direction: column; line-height: 1.05; }
+  .wm-name {
+    font-family: var(--serif);
+    font-weight: 700;
+    font-size: 1.15rem;
+    letter-spacing: 0.02em;
+  }
+  .wm-sub {
+    font-family: var(--serif);
+    font-size: 0.85rem;
+    letter-spacing: 0.32em;
+    color: var(--graphite);
+  }
+
+  .nav-list {
+    display: flex;
+    align-items: center;
+    gap: clamp(1rem, 2.2vw, 2rem);
+    list-style: none;
+    padding: 0;
+  }
+  .nav-list a:not(.btn) {
+    color: var(--ink);
+    text-decoration: none;
+    font-weight: 500;
+    padding-block: 0.4rem;
+    border-bottom: 2px solid transparent;
+  }
+  .nav-list a:not(.btn):hover { border-bottom-color: var(--red); }
+  .nav-list a[aria-current='page'] { border-bottom-color: var(--ink); }
+  .nav-call .btn { min-height: 2.6rem; padding-block: 0.5rem; }
+
+  .nav-toggle {
+    display: none;
+    background: none;
+    border: 2px solid var(--ink);
+    border-radius: 2px;
+    width: 2.75rem;
+    height: 2.75rem;
+    padding: 0.45rem;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .nav-toggle .t-close { display: none; }
+  .nav-toggle[aria-expanded='true'] .t-open { display: none; }
+  .nav-toggle[aria-expanded='true'] .t-close { display: block; }
+
+  @media (max-width: 60rem) {
+    .nav-toggle { display: block; }
+    .nav-list {
+      display: none;
+      position: absolute;
+      inset: 100% 0 auto 0;
+      flex-direction: column;
+      align-items: stretch;
+      gap: 0;
+      background: var(--paper);
+      border-bottom: 5px solid var(--ink);
+      padding: 0.5rem var(--gutter) 1.25rem;
+    }
+    .nav-list.open { display: flex; }
+    .nav-list li { border-bottom: 1px solid var(--rule); }
+    .nav-list a:not(.btn) { display: block; padding-block: 0.9rem; border: 0; }
+    .nav-call { border: 0 !important; padding-top: 1rem; }
+    .nav-call .btn { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 26rem) {
+    .wm-name { font-size: 1rem; }
+    .brand img { width: 2.6rem; }
+  }
+</style>

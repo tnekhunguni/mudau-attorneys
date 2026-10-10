@@ -1,0 +1,44 @@
+---
+import Icon from './Icon.astro';
+import { firm } from '../data/site';
+interface Props { heading?: string; text?: string }
+const {
+  heading = 'Talk to us about your matter',
+  text = 'Call, WhatsApp or send a message. Tell us briefly what happened and we will tell you what the next step is.',
+} = Astro.props;
+---
+<section class="cta">
+  <div class="chev" aria-hidden="true"></div>
+  <div class="wrap cta-inner">
+    <div>
+      <h2>{heading}</h2>
+      <p>{text}</p>
+    </div>
+    <div class="actions">
+      <a class="btn btn-red" href={firm.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp us</a>
+      <a class="btn btn-line" href={firm.phones[0].href}><Icon name="phone" />Call {firm.phones[0].label}</a>
+      <a class="btn btn-line" href="/contact/"><Icon name="mail" />Send a message</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .cta { background: var(--mist); }
+  .chev {
+    height: 0.75rem;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'%3E%3Cpath fill='%23000' d='M0 0h6l6 6-6 6H0l6-6z'/%3E%3C/svg%3E")
+      repeat-x left center / 1.2rem 0.55rem;
+    opacity: 0.85;
+  }
+  .cta-inner {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 2rem;
+    align-items: center;
+    padding-block: clamp(2.5rem, 6vw, 4rem);
+  }
+  p { margin-top: 0.75rem; color: var(--graphite); }
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  @media (max-width: 60rem) { .cta-inner { grid-template-columns: 1fr; } }
+  @media (max-width: 34rem) { .actions .btn { flex: 1 1 100%; justify-content: center; } }
+</style>

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "redirects": [
+    { "source": "/index.html", "destination": "/", "permanent": true },
+    { "source": "/about.html", "destination": "/about/", "permanent": true },
+    { "source": "/services.html", "destination": "/practice-areas/", "permanent": true },
+    { "source": "/contact.html", "destination": "/contact/", "permanent": true },
+    { "source": "/send-contact.php", "destination": "/contact/", "permanent": false }
+  ],
+  "headers": [
+    { "source": "/_astro/(.*)", "headers": [{ "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }] }
+  ]
+}

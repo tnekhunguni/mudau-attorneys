@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /send-contact.php
+
+Sitemap: https://mudauattorneys.com/sitemap-index.xml

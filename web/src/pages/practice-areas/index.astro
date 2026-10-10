@@ -1,0 +1,30 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import PracticeIndex from '../../components/PracticeIndex.astro';
+import CtaBand from '../../components/CtaBand.astro';
+---
+<Base
+  title="Practice areas | Mudau Makondelele Attorneys, Thohoyandou"
+  description="Criminal defence, labour disputes, medical negligence, personal injury, family law, litigation, commercial, debt recovery and public-sector law, from our office in Thohoyandou."
+>
+  <PageHeader
+    title="Practice areas"
+    lede="We are a general practice with a strong litigation focus, acting for individuals, businesses and public institutions anywhere in South Africa."
+    crumbs={[]}
+  />
+  <section class="section">
+    <div class="wrap">
+      <PracticeIndex level={2} />
+      <p class="note">
+        Don't see your matter here? Call us anyway. If it's outside what we do, we'll say so and, where we
+        can, point you to someone who can help.
+      </p>
+    </div>
+  </section>
+  <CtaBand />
+</Base>
+
+<style>
+  .note { margin-top: 2.5rem; color: var(--graphite); }
+</style>

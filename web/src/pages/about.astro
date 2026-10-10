@@ -1,0 +1,149 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Timeline from '../components/Timeline.astro';
+import Steps from '../components/Steps.astro';
+import CtaBand from '../components/CtaBand.astro';
+import portrait from '../assets/makonde-mudau.png';
+import { firm } from '../data/site';
+---
+<Base
+  title="About | Mudau Makondelele Attorneys, Thohoyandou"
+  description="Mudau Makondelele Attorneys is a general law practice in Thohoyandou, founded and directed by Makondelele Mudau, acting for clients across South Africa."
+>
+  <PageHeader
+    title="About the firm"
+    lede="A general law practice in Thohoyandou, founded and directed by Makondelele Mudau. We act for individuals, businesses and public institutions across South Africa."
+    crumbs={[]}
+  />
+
+  <section class="section" aria-labelledby="director-h">
+    <div class="wrap director">
+      <figure class="portrait">
+        <Image
+          src={portrait}
+          alt="Makondelele Mudau, Director"
+          widths={[320, 480, 640]}
+          sizes="(max-width: 52rem) 70vw, 24rem"
+          format="webp"
+        />
+      </figure>
+      <div class="bio">
+        <h2 id="director-h">Makondelele Mudau</h2>
+        <p class="role">Director</p>
+        <p>
+          Mr Mudau graduated with an LLB from the University of Venda in 2012 and completed his practical
+          legal training at the Polokwane School for Legal Practice. He served his articles of clerkship with
+          Legal Aid South Africa, then worked as a litigator with attorneys and debt counsellors in
+          Johannesburg.
+        </p>
+        <p>
+          In 2015 he co-founded Mudau & Netshipise Attorneys, where he practised as a director until 2025.
+          That year he opened Mudau Makondelele Attorneys in Thohoyandou.
+        </p>
+        <p>
+          His work covers labour and employment law, including appearances at the CCMA, bargaining councils
+          and the Labour Court; criminal litigation; medical negligence; unlawful arrest; constitutional and
+          administrative law; and commercial and contract work. He has chaired and initiated disciplinary
+          hearings, drafted procurement policies, and advised public bodies and private companies.
+        </p>
+        <p>
+          He served the Black Lawyers Association in Gauteng as Head of Events and Campaigns and later as
+          Treasurer.
+        </p>
+      </div>
+      <div class="career">
+        <h3>Career</h3>
+        <Timeline />
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-mist" aria-labelledby="team-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="team-h">The team</h2>
+        <p>
+          A team of fourteen, and growing: candidate attorneys, a paralegal, administrative staff and an
+          in-house bookkeeper who looks after the firm's trust and business accounts. Every matter is
+          supervised by the director.
+        </p>
+      </div>
+      <div>
+        <h2>Your records are safe with us</h2>
+        <p>
+          Client files are kept in paper and electronic form. Electronic files are backed up regularly and
+          held off site, so your matter is not lost or delayed if something goes wrong at the office. Personal
+          information is handled under the Protection of Personal Information Act; see our <a href="/privacy/">privacy notice</a>.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="process-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="process-h">How your matter is handled</h2>
+      </div>
+      <Steps />
+    </div>
+  </section>
+
+  <section class="section section-mist" aria-labelledby="reg-h">
+    <div class="wrap two">
+      <div>
+        <h2 id="reg-h">Registration and memberships</h2>
+        <blockquote>“{firm.tagline}”</blockquote>
+      </div>
+      <ul class="reg">
+        <li>Registered with the Legal Practice Council</li>
+        <li>Fidelity Fund certificate from the Legal Practitioners Fidelity Fund</li>
+        <li>Member of the Black Lawyers Association</li>
+        <li>Company registration number {firm.registration}</li>
+        <li>Registered on the Central Supplier Database</li>
+        <li>B-BBEE Level 1, 100% black-owned</li>
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .director {
+    display: grid;
+    grid-template-columns: 22rem minmax(0, 1fr);
+    grid-template-areas: 'photo bio' 'career bio';
+    gap: 2.5rem clamp(2rem, 6vw, 5rem);
+    align-items: start;
+  }
+  .portrait { grid-area: photo; position: relative; background: var(--mist); border-bottom: 5px solid var(--ink); }
+  .portrait::before {
+    content: '';
+    position: absolute; inset: auto 0 0 auto;
+    width: 70%; height: 70%;
+    background: var(--red);
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+  }
+  .portrait :global(img) { position: relative; width: 100%; height: auto; }
+  .bio { grid-area: bio; }
+  .bio p:not(.role) { margin-top: 1.1rem; }
+  .role { margin-top: 0.3rem; font-weight: 600; color: var(--red-ink); }
+  .career { grid-area: career; --bg: var(--paper); }
+  .career h3 { font-family: var(--sans); font-size: var(--step-0); font-weight: 700; margin-bottom: 1rem; }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); }
+  .two h2 { font-size: var(--step-3); }
+  .two p { margin-top: 1rem; }
+  .two h2 + p { margin-top: 1rem; }
+  blockquote { margin-top: 1.5rem; font-family: var(--serif); font-style: italic; font-size: var(--step-2); }
+  .reg { list-style: none; padding: 0; border-top: 5px solid var(--ink); }
+  .reg li { padding-block: 0.8rem; border-bottom: 1px solid var(--rule); }
+
+  @media (max-width: 52rem) {
+    .director { grid-template-columns: 1fr; grid-template-areas: 'photo' 'bio' 'career'; }
+    .portrait { max-width: 22rem; }
+    .two { grid-template-columns: 1fr; }
+  }
+</style>

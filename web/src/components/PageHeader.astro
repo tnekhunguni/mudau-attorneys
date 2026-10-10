@@ -1,0 +1,43 @@
+---
+// Inner-page header: breadcrumb, title, lede, with a small letterhead corner.
+interface Props { title: string; lede?: string; crumbs?: { href: string; label: string }[] }
+const { title, lede, crumbs } = Astro.props;
+---
+<section class="page-header">
+  <svg class="corner" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+    <polygon class="c-line" points="100,0 100,100 0,100" />
+    <polygon class="c-red" points="100,30 100,100 30,100" />
+  </svg>
+  <div class="wrap inner">
+    {crumbs && (
+      <nav aria-label="Breadcrumb">
+        <ol class="crumbs">
+          <li><a href="/">Home</a></li>
+          {crumbs.map((c) => <li><a href={c.href}>{c.label}</a></li>)}
+          <li aria-current="page">{title}</li>
+        </ol>
+      </nav>
+    )}
+    <h1>{title}</h1>
+    {lede && <p class="lede">{lede}</p>}
+    <slot />
+  </div>
+</section>
+
+<style>
+  .page-header { position: relative; overflow: hidden; border-bottom: 1px solid var(--rule); }
+  .inner { position: relative; padding-block: clamp(2.5rem, 6vw, 4.5rem); }
+  h1 { max-width: 20ch; }
+  .lede { margin-top: 1.25rem; font-size: var(--step-1); line-height: 1.55; color: var(--graphite); max-width: 40rem; }
+  .crumbs {
+    list-style: none; padding: 0; margin-bottom: 1.25rem;
+    display: flex; flex-wrap: wrap; gap: 0.35rem 0.6rem;
+    font-size: var(--step--1); color: var(--graphite);
+  }
+  .crumbs li + li::before { content: '›'; margin-right: 0.6rem; color: var(--red-ink); }
+  .crumbs a { color: var(--graphite); }
+  .corner { position: absolute; right: 0; bottom: 0; width: clamp(6rem, 18vw, 15rem); height: clamp(6rem, 18vw, 15rem); }
+  .c-line { fill: none; stroke: var(--ink); stroke-width: 8px; vector-effect: non-scaling-stroke; }
+  .c-red { fill: var(--red); }
+  @media (max-width: 40rem) { .corner { opacity: 0.18; } }
+</style>

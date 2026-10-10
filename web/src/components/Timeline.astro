@@ -1,0 +1,24 @@
+---
+import { timeline } from '../data/site';
+---
+<ol class="timeline" aria-label="Career">
+  {timeline.map((t) => (
+    <li><span class="t-when">{t.when}</span><span class="t-what">{t.what}</span></li>
+  ))}
+</ol>
+
+<style>
+  .timeline { list-style: none; padding: 0; border-left: 5px solid var(--ink); }
+  .timeline li { position: relative; padding: 0 0 1.6rem 1.6rem; display: grid; gap: 0.2rem; }
+  .timeline li:last-child { padding-bottom: 0; }
+  .timeline li::before {
+    content: '';
+    position: absolute; left: -0.6rem; top: 0.35rem;
+    width: 0.75rem; height: 0.75rem;
+    background: var(--red);
+    border: 2px solid var(--bg, var(--mist));
+    box-sizing: content-box;
+  }
+  .t-when { font-weight: 700; font-size: var(--step--1); }
+  .t-what { font-family: var(--serif); font-size: 1.05rem; line-height: 1.45; }
+</style>

@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+import { practicesFor } from '../data/practice';
+interface Props { level?: 2 | 3 }
+const { level = 3 } = Astro.props;
+const H = `h${level}`;
+
+const cols = [
+  { heading: 'For you and your family', items: practicesFor('people') },
+  { heading: 'For employers, businesses and public bodies', items: practicesFor('organisations') },
+];
+---
+<div class="practice-cols">
+  {cols.map((col) => (
+    <div>
+      <H class="col-h">{col.heading}</H>
+      <ul class="practice-list">
+        {col.items.map((p) => (
+          <li>
+            <a href={`/practice-areas/${p.slug}/`}>
+              <span class="p-name">{p.name}</span>
+              <span class="p-sum">{p.summary}</span>
+              <Icon name="chevron" />
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  ))}
+</div>
+
+<style>
+  .practice-cols { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 5vw, 4.5rem); }
+  .col-h {
+    font-family: var(--sans);
+    font-size: var(--step-0);
+    font-weight: 700;
+    padding-top: 0.9rem;
+    border-top: 5px solid var(--ink);
+  }
+  .practice-list { list-style: none; padding: 0; margin-top: 0.6rem; }
+  .practice-list li { border-bottom: 1px solid var(--rule); }
+  .practice-list a {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    column-gap: 1rem;
+    padding-block: 1.15rem;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .p-name { font-family: var(--serif); font-size: var(--step-1); line-height: 1.3; }
+  .p-sum { grid-column: 1; margin-top: 0.3rem; color: var(--graphite); font-size: var(--step--1); line-height: 1.5; }
+  .practice-list :global(svg) {
+    grid-column: 2; grid-row: 1 / span 2; align-self: center;
+    width: 1.3rem; color: var(--red-ink); transition: transform 0.2s;
+  }
+  .practice-list a:hover .p-name { color: var(--red-ink); }
+  .practice-list a:hover :global(svg) { transform: translateX(4px); }
+  @media (max-width: 52rem) { .practice-cols { grid-template-columns: 1fr; } }
+</style>

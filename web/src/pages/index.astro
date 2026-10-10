@@ -1,0 +1,258 @@
+---
+import { Image } from 'astro:assets';
+import Base from '../layouts/Base.astro';
+import Icon from '../components/Icon.astro';
+import portrait from '../assets/makonde-mudau.png';
+import { firm } from '../data/site';
+import PracticeIndex from '../components/PracticeIndex.astro';
+import Timeline from '../components/Timeline.astro';
+import Steps from '../components/Steps.astro';
+import Credentials from '../components/Credentials.astro';
+
+---
+<Base
+  title="Mudau Makondelele Attorneys | Attorneys in Thohoyandou, Limpopo"
+  description="Attorneys in Thohoyandou acting for clients across South Africa: labour and CCMA, criminal defence, medical negligence, civil litigation, commercial and public-sector work."
+>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div class="hero-text">
+        <h1>Attorneys in Thohoyandou, acting for clients across South Africa.</h1>
+        <p class="lede">
+          Led by Director Makondelele Mudau, with over 13 years of litigation and advisory work in
+          labour, criminal, medical negligence, commercial and public-sector matters.
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-red" href={firm.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp us</a>
+          <a class="btn btn-line" href={firm.phones[0].href}><Icon name="phone" />Call {firm.phones[0].label}</a>
+        </div>
+        <p class="hours">Open Monday to Friday, 08:00 to 17:00. Saturdays by appointment.</p>
+      </div>
+
+      <figure class="hero-figure">
+        <svg class="corner" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
+          <polygon class="corner-line" points="100,4 100,100 4,100" />
+          <polygon class="corner-red" points="100,22 100,100 22,100" />
+        </svg>
+        <Image
+          class="portrait"
+          src={portrait}
+          alt="Makondelele Mudau, Director of Mudau Makondelele Attorneys"
+          widths={[360, 540, 720, 960]}
+          sizes="(max-width: 52rem) 80vw, 34rem"
+          format="webp"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <figcaption>
+          <strong>Makondelele Mudau</strong>
+          <span>Director, LLB (Univen)</span>
+        </figcaption>
+      </figure>
+    </div>
+
+    <div class="facts">
+      <ul class="wrap">
+        <li>Over 13 years in practice</li>
+        <li>Magistrate's Courts, High Court, CCMA and Labour Court</li>
+        <li>B-BBEE Level 1, 100% black-owned</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Practice areas -->
+  <section class="section" aria-labelledby="practice-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="practice-h">What we can help with</h2>
+        <p>
+          A general practice with a strong litigation focus. If your matter isn't listed, call us and
+          we'll tell you plainly whether we can take it on.
+        </p>
+      </div>
+      <PracticeIndex />
+    </div>
+  </section>
+
+  <!-- Director -->
+  <section class="section section-mist" aria-labelledby="director-h">
+    <div class="wrap director">
+      <div class="director-text">
+        <h2 id="director-h">Makondelele Mudau</h2>
+        <p class="role">Director</p>
+        <p>
+          Mr Mudau studied law at the University of Venda and completed his practical legal training at
+          the Polokwane School for Legal Practice. He served his articles with Legal Aid South Africa,
+          worked as a litigator in Johannesburg, and spent ten years as a co-founder and director of
+          Mudau & Netshipise Attorneys before opening this firm in Thohoyandou.
+        </p>
+        <p>
+          His practice covers labour and employment law, criminal litigation, medical negligence,
+          unlawful arrest and commercial work. He has chaired disciplinary hearings, drafted procurement
+          policies and advised public bodies and private companies.
+        </p>
+        <a class="btn btn-line" href="/about/">About the firm</a>
+      </div>
+      <Timeline />
+    </div>
+  </section>
+
+  <!-- How a matter runs -->
+  <section class="section" aria-labelledby="process-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="process-h">How your matter is handled</h2>
+        <p>The same process applies whether you're an individual or an institution.</p>
+      </div>
+      <Steps />
+    </div>
+  </section>
+
+  <!-- Organisations -->
+  <section class="section orgs" aria-labelledby="orgs-h">
+    <div class="wrap orgs-grid">
+      <div>
+        <h2 id="orgs-h">For municipalities, institutions and companies</h2>
+        <p class="orgs-lede">
+          We act for organs of state, colleges and universities, and businesses: litigation, panel work,
+          procurement and PFMA advice, disciplinary hearings and commercial agreements.
+        </p>
+        <div class="orgs-actions">
+          <a class="btn btn-red" href={`mailto:${firm.email}?subject=${encodeURIComponent('Company profile request')}`}>
+            <Icon name="download" />Request our company profile
+          </a>
+          <a class="btn btn-light" href="/organisations/">Panel appointments</a>
+        </div>
+      </div>
+      <div>
+        <Credentials />
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section" aria-labelledby="contact-h">
+    <div class="wrap contact">
+      <div>
+        <h2 id="contact-h">Visit or contact us</h2>
+        <address class="addr">
+          {firm.address.lines.map((l) => <span>{l}</span>)}
+        </address>
+        <a class="btn btn-line" href={firm.mapUrl} target="_blank" rel="noopener"><Icon name="pin" />Get directions</a>
+      </div>
+      <div class="contact-list">
+        <ul>
+          {firm.phones.map((p) => (
+            <li><span class="c-k">{p.kind}</span><a href={p.href}>{p.label}</a></li>
+          ))}
+          <li><span class="c-k">Email</span><a href={`mailto:${firm.email}`}>{firm.email}</a></li>
+          <li><span class="c-k">WhatsApp</span><a href={firm.whatsapp} target="_blank" rel="noopener">072 054 0722</a></li>
+        </ul>
+        <table class="hours-table">
+          <caption class="visually-hidden">Office hours</caption>
+          <tbody>
+            {firm.hours.map((h) => <tr><th scope="row">{h.days}</th><td>{h.time}</td></tr>)}
+          </tbody>
+        </table>
+        <a class="btn btn-red" href="/contact/">Send us a message</a>
+      </div>
+    </div>
+  </section>
+</Base>
+
+<style>
+  /* Hero */
+  .hero { position: relative; overflow: hidden; }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+    align-items: end;
+    gap: clamp(1.5rem, 4vw, 4rem);
+    padding-top: clamp(2.5rem, 6vw, 5rem);
+  }
+  .hero-text { padding-bottom: clamp(2.5rem, 6vw, 5rem); }
+  .hero h1 { max-width: 15ch; font-size: clamp(2.4rem, 1.3rem + 3.9vw, 4.1rem); line-height: 1.08; }
+  .lede { margin-top: 1.5rem; font-size: var(--step-1); line-height: 1.55; color: var(--graphite); max-width: 34rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  .hours { margin-top: 1.1rem; font-size: var(--step--1); color: var(--graphite); }
+
+  .hero-figure { position: relative; align-self: stretch; display: flex; align-items: flex-end; justify-content: center; min-height: 30rem; }
+  .corner { position: absolute; inset: 8% -6% 0 4%; width: 102%; height: 92%; }
+  .corner-line { fill: none; stroke: var(--ink); stroke-width: 2.2; vector-effect: non-scaling-stroke; stroke-width: 10px; }
+  .corner-red { fill: var(--red); }
+  .portrait { position: relative; width: min(100%, 30rem); height: auto; }
+  figcaption {
+    position: absolute;
+    left: 0;
+    bottom: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    background: var(--paper);
+    border-left: 5px solid var(--ink);
+    padding: 0.6rem 1rem;
+    line-height: 1.3;
+    box-shadow: 0 0 0 1px var(--rule);
+  }
+  figcaption strong { font-family: var(--serif); font-weight: 700; }
+  figcaption span { font-size: var(--step--1); color: var(--graphite); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .corner-red { animation: corner-in 0.9s cubic-bezier(.2,.7,.2,1) both 0.15s; transform-origin: 100% 100%; }
+    .corner-line { animation: fade 0.6s ease both 0.6s; }
+    @keyframes corner-in { from { transform: scale(0.25); opacity: 0; } to { transform: none; opacity: 1; } }
+    @keyframes fade { from { opacity: 0; } }
+  }
+
+  .facts { background: var(--ink); color: var(--paper); }
+  .facts ul {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem 2.5rem;
+    padding-block: 1.1rem;
+    font-weight: 500;
+  }
+  .facts li { display: flex; align-items: center; gap: 0.7rem; }
+  .facts li::before {
+    content: '';
+    width: 0.7rem; height: 0.75rem; flex: none;
+    background: var(--red);
+    clip-path: polygon(0 0, 45% 0, 100% 50%, 45% 100%, 0 100%, 55% 50%);
+  }
+
+  /* Director */
+  .director { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .role { margin-top: 0.3rem; font-weight: 600; color: var(--red-ink); }
+  .director-text p:not(.role) { margin-top: 1.1rem; }
+  .director-text .btn { margin-top: 1.75rem; }
+  /* Organisations */
+  .orgs { background: var(--ink); color: var(--paper); }
+  .orgs h2 { color: var(--paper); max-width: 19ch; }
+  .orgs-grid { display: grid; grid-template-columns: 1fr 1.15fr; gap: clamp(2rem, 6vw, 5rem); }
+  .orgs-lede { margin-top: 1.25rem; font-size: var(--step-1); line-height: 1.55; color: #cfd2d4; }
+  .orgs-actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem; }
+  /* Contact */
+  .contact { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); }
+  .addr { font-style: normal; display: flex; flex-direction: column; margin-block: 1.25rem 1.75rem; font-family: var(--serif); font-size: var(--step-2); line-height: 1.35; }
+  .contact-list ul { list-style: none; padding: 0; border-top: 5px solid var(--ink); }
+  .contact-list li { display: grid; grid-template-columns: 7rem 1fr; padding-block: 0.8rem; border-bottom: 1px solid var(--rule); }
+  .c-k { color: var(--graphite); }
+  .contact-list a { font-weight: 600; overflow-wrap: anywhere; }
+  .hours-table { width: 100%; border-collapse: collapse; margin-block: 1.5rem 1.75rem; font-size: var(--step--1); }
+  .hours-table th { text-align: left; font-weight: 400; color: var(--graphite); padding: 0.3rem 1rem 0.3rem 0; }
+  .hours-table td { padding: 0.3rem 0; font-weight: 600; }
+
+  /* Responsive */
+  @media (max-width: 52rem) {
+    .hero-grid { grid-template-columns: 1fr; }
+    .hero-text { padding-bottom: 0; }
+    .hero-figure { min-height: 0; max-width: 28rem; margin-inline: auto; width: 100%; }
+    .director, .orgs-grid, .contact { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 34rem) {
+    .hero-actions .btn { flex: 1 1 100%; justify-content: center; }
+    figcaption { bottom: 1rem; }
+    .addr { font-size: var(--step-1); }
+  }
+</style>

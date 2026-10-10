@@ -1,0 +1,98 @@
+---
+import { firm } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer class="site-footer">
+  <div class="chevrons" aria-hidden="true"></div>
+  <div class="wrap grid">
+    <div class="f-brand">
+      <p class="f-name">{firm.name}</p>
+      <p class="f-tag">“{firm.tagline}”</p>
+    </div>
+
+    <div>
+      <h2 class="f-h">Office</h2>
+      <address>
+        {firm.address.lines.map((l) => <span>{l}</span>)}
+      </address>
+    </div>
+
+    <div>
+      <h2 class="f-h">Contact</h2>
+      <ul>
+        {firm.phones.map((p) => <li><a href={p.href}>{p.label}</a></li>)}
+        <li><a href={`mailto:${firm.email}`}>{firm.email}</a></li>
+        <li><a href={firm.whatsapp} rel="noopener" target="_blank">WhatsApp</a></li>
+      </ul>
+    </div>
+
+    <div>
+      <h2 class="f-h">Firm</h2>
+      <ul>
+        <li><a href="/about/">About</a></li>
+        <li><a href="/practice-areas/">Practice areas</a></li>
+        <li><a href="/organisations/">For organisations</a></li>
+        <li><a href="/privacy/">Privacy and POPIA</a></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="wrap legal">
+    <p>
+      © {year} {firm.name}. Registration number {firm.registration}.
+      Registered with the Legal Practice Council and the Legal Practitioners Fidelity Fund.
+    </p>
+    <p>Information on this website is general and is not legal advice for your particular matter.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--ink);
+    color: #d9dbdd;
+    padding-bottom: 2rem;
+  }
+  /* Chevron band from the letterhead */
+  .chevrons {
+    height: 1.6rem;
+    background: var(--ink)
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 18 12'%3E%3Cpath fill='%23ef363a' d='M0 0h6l6 6-6 6H0l6-6z'/%3E%3C/svg%3E")
+      repeat-x left center / 1.6rem 0.75rem;
+    border-top: 1px solid #222;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: 1.4fr repeat(3, 1fr);
+    gap: 2.5rem;
+    padding-block: 3.5rem 2.5rem;
+  }
+  .f-name { font-family: var(--serif); font-size: var(--step-2); color: var(--paper); line-height: 1.2; }
+  .f-tag { margin-top: 0.75rem; font-family: var(--serif); font-style: italic; color: #b9bcbf; }
+  .f-h {
+    font-family: var(--sans);
+    font-size: var(--step--1);
+    font-weight: 600;
+    color: var(--paper);
+    margin-bottom: 0.75rem;
+  }
+  address { font-style: normal; display: flex; flex-direction: column; }
+  ul { list-style: none; padding: 0; display: grid; gap: 0.35rem; }
+  a { color: #e6e7e8; text-decoration: none; }
+  a:hover { color: var(--paper); text-decoration: underline; }
+  .legal {
+    border-top: 1px solid #333;
+    padding-top: 1.5rem;
+    font-size: var(--step--1);
+    color: #a5a8ab;
+    display: grid;
+    gap: 0.4rem;
+  }
+  .legal p { max-width: none; }
+  @media (max-width: 52rem) {
+    .grid { grid-template-columns: 1fr 1fr; }
+    .f-brand { grid-column: 1 / -1; }
+  }
+  @media (max-width: 30rem) {
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>

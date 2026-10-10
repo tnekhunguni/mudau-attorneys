@@ -1,0 +1,138 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Credentials from '../components/Credentials.astro';
+import CtaBand from '../components/CtaBand.astro';
+import Icon from '../components/Icon.astro';
+import { practicesFor } from '../data/practice';
+import { firm } from '../data/site';
+
+const profileMail = `mailto:${firm.email}?subject=${encodeURIComponent('Company profile request')}`;
+
+const engagement = [
+  { title: 'One designated contact', body: 'On appointment, the director is your single point of contact for every matter we handle for you.' },
+  { title: 'Deadlines monitored', body: 'Each step on a file has a set time period, checked by the supervising director so nothing becomes time-barred.' },
+  { title: 'Written reports', body: 'You receive a written update after every significant step, and a close-out report with the final account.' },
+  { title: 'Your approval for costs', body: 'We seek your written approval before briefing counsel or experts. In an emergency we ask by phone and confirm in writing within 24 hours.' },
+  { title: 'Billing that suits you', body: 'Accounts at the end of a matter, at agreed stages or monthly, as your finance processes require.' },
+];
+
+const documents = [
+  'Company profile',
+  'B-BBEE verification certificate',
+  'Central Supplier Database registration report',
+  'Tax compliance status',
+  'Fidelity Fund certificate',
+  'CIPC registration documents',
+];
+---
+<Base
+  title="For municipalities, institutions and companies | Mudau Makondelele Attorneys"
+  description="Legal services for organs of state, municipalities, colleges and companies: litigation, panel work, procurement and PFMA advice, employment law. B-BBEE Level 1, CSD registered."
+>
+  <PageHeader
+    title="For municipalities, institutions and companies"
+    lede="We act for organs of state, colleges and universities, and businesses, on panel appointments and individual instructions."
+    crumbs={[]}
+  >
+    <div class="head-actions">
+      <a class="btn btn-red" href={profileMail}><Icon name="download" />Request our company profile</a>
+    </div>
+  </PageHeader>
+
+  <section class="section" aria-labelledby="services-h">
+    <div class="wrap">
+      <div class="section-head"><h2 id="services-h">What we do for organisations</h2></div>
+      <ul class="org-services">
+        {practicesFor('organisations').map((p) => (
+          <li>
+            <a href={`/practice-areas/${p.slug}/`}>
+              <h3>{p.name}</h3>
+              <p>{p.summary}</p>
+            </a>
+          </li>
+        ))}
+        <li>
+          <a href="/practice-areas/labour-disputes/">
+            <h3>Bargaining council and MIBCO matters</h3>
+            <p>Disputes in the motor industry and other sectors with bargaining councils.</p>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section orgs" aria-labelledby="creds-h">
+    <div class="wrap orgs-grid">
+      <div>
+        <h2 id="creds-h">Credentials</h2>
+        <p class="muted">
+          Mudau Makondelele Attorneys is wholly owned and directed by Makondelele Mudau, with over 13 years
+          of experience acting for public and private clients.
+        </p>
+      </div>
+      <div><Credentials /></div>
+    </div>
+  </section>
+
+  <section class="section" aria-labelledby="engage-h">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 id="engage-h">How we work with you</h2>
+        <p>Our matter-management process is designed for institutions that need accountability and a paper trail.</p>
+      </div>
+      <dl class="engage">
+        {engagement.map((e) => (
+          <div><dt>{e.title}</dt><dd>{e.body}</dd></div>
+        ))}
+      </dl>
+    </div>
+  </section>
+
+  <section class="section section-mist" aria-labelledby="docs-h">
+    <div class="wrap docs">
+      <div>
+        <h2 id="docs-h">Supplier documents</h2>
+        <p>We provide these on request for panel applications and supplier onboarding.</p>
+        <a class="btn btn-red" href={`mailto:${firm.email}?subject=${encodeURIComponent('Supplier documents request')}`}>
+          <Icon name="mail" />Request documents
+        </a>
+      </div>
+      <ul class="doc-list">
+        {documents.map((d) => <li>{d}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <CtaBand heading="Discuss an appointment or a matter" text="Call the director directly or send the details by email. We respond to institutional enquiries within one working day." />
+</Base>
+
+<style>
+  .head-actions { margin-top: 2rem; }
+  .org-services { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 5px solid var(--ink); }
+  .org-services li { border-bottom: 1px solid var(--rule); }
+  .org-services a { display: block; height: 100%; padding: 1.5rem 1.5rem 1.5rem 0; color: var(--ink); text-decoration: none; }
+  .org-services a:hover h3 { color: var(--red-ink); }
+  .org-services p { margin-top: 0.4rem; color: var(--graphite); font-size: var(--step--1); }
+
+  .orgs { background: var(--ink); color: var(--paper); }
+  .orgs h2 { color: var(--paper); }
+  .orgs-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: clamp(2rem, 6vw, 5rem); }
+  .muted { margin-top: 1rem; color: #cfd2d4; font-size: var(--step-1); line-height: 1.55; }
+
+  .engage { display: grid; grid-template-columns: repeat(5, 1fr); gap: 1.75rem; }
+  .engage div { border-top: 1px solid var(--ink); padding-top: 1rem; }
+  .engage dt { font-family: var(--serif); font-size: var(--step-1); }
+  .engage dd { margin-top: 0.5rem; color: var(--graphite); font-size: var(--step--1); line-height: 1.6; }
+
+  .docs { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(2rem, 6vw, 5rem); }
+  .docs p { margin-block: 1rem 1.75rem; }
+  .doc-list { list-style: none; padding: 0; border-top: 5px solid var(--ink); }
+  .doc-list li { padding-block: 0.8rem; border-bottom: 1px solid var(--rule); }
+
+  @media (max-width: 70rem) { .engage { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 60rem) { .org-services { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 44rem) { .engage { grid-template-columns: 1fr; } }
+  @media (max-width: 52rem) { .orgs-grid, .docs { grid-template-columns: 1fr; } }
+  @media (max-width: 34rem) { .org-services { grid-template-columns: 1fr; } }
+</style>

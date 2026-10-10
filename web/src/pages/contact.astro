@@ -1,0 +1,252 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Icon from '../components/Icon.astro';
+import { firm } from '../data/site';
+import { practices } from '../data/practice';
+const review = import.meta.env.PUBLIC_REVIEW === '1';
+---
+<Base
+  title="Contact | Mudau Makondelele Attorneys, Thohoyandou"
+  description="Contact Mudau Makondelele Attorneys at Stand 709, Madanzhe Street, P West, Thohoyandou. Call 015 023 1380, WhatsApp 072 054 0722 or send a message."
+>
+  <PageHeader
+    title="Contact us"
+    lede="Call or WhatsApp for the quickest answer, or send a message and we'll get back to you within one working day."
+    crumbs={[]}
+  />
+
+  <section class="section">
+    <div class="wrap contact">
+      <div class="form-col">
+        <h2>Send us a message</h2>
+
+        <div id="form-status" class="status" role="status" aria-live="polite" hidden></div>
+
+        {review && (
+          <p class="status review">
+            Review copy: this form checks your entries but doesn't send anything. On the live site,
+            messages go to {firm.email}.
+          </p>
+        )}
+
+        <form id="contact-form" action="/send-contact.php" method="post" novalidate data-review={review ? '1' : undefined}>
+          <div class="field">
+            <label for="name">Full name</label>
+            <input id="name" name="name" type="text" autocomplete="name" required maxlength="100" />
+            <p class="err" id="name-err"></p>
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label for="phone">Phone number</label>
+              <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required
+                pattern="[0-9+\(\)\s\-]{9,20}" maxlength="20" aria-describedby="phone-hint" />
+              <p class="hint" id="phone-hint">We'll usually call you back.</p>
+              <p class="err" id="phone-err"></p>
+            </div>
+            <div class="field">
+              <label for="email">Email <span class="opt">(optional)</span></label>
+              <input id="email" name="email" type="email" autocomplete="email" maxlength="150" />
+              <p class="err" id="email-err"></p>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="matter">What is it about?</label>
+            <select id="matter" name="matter" required>
+              <option value="">Choose one</option>
+              {practices.map((p) => <option value={p.slug}>{p.name}</option>)}
+              <option value="other">Something else</option>
+            </select>
+            <p class="err" id="matter-err"></p>
+          </div>
+
+          <div class="field">
+            <label for="message">Briefly, what happened?</label>
+            <textarea id="message" name="message" rows="6" required minlength="10" maxlength="3000"
+              aria-describedby="message-hint"></textarea>
+            <p class="hint" id="message-hint">A few sentences is enough. Please don't send documents yet.</p>
+            <p class="err" id="message-err"></p>
+          </div>
+
+          <!-- Spam trap: hidden from people, filled in by bots -->
+          <div class="trap" aria-hidden="true">
+            <label for="website">Leave this empty</label>
+            <input id="website" name="website" type="text" tabindex="-1" autocomplete="off" />
+          </div>
+          <input type="hidden" name="ts" id="ts" value="" />
+
+          <div class="field check">
+            <input id="consent" name="consent" type="checkbox" value="yes" required />
+            <label for="consent">
+              I agree that Mudau Makondelele Attorneys may use these details to respond to my enquiry, as set out
+              in the <a href="/privacy/">privacy notice</a>.
+            </label>
+            <p class="err" id="consent-err"></p>
+          </div>
+
+          <button class="btn btn-red submit" type="submit">Send message</button>
+          <p class="small">
+            Sending a message does not make us your attorneys. We'll confirm in writing once we take on your matter.
+          </p>
+        </form>
+      </div>
+
+      <aside class="details" aria-labelledby="details-h">
+        <h2 id="details-h" class="visually-hidden">Contact details</h2>
+        <div class="quick">
+          <a class="btn btn-red" href={firm.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp 072 054 0722</a>
+          <a class="btn btn-line" href={firm.phones[0].href}><Icon name="phone" />Call {firm.phones[0].label}</a>
+        </div>
+
+        <ul class="list">
+          {firm.phones.map((p) => <li><span>{p.kind}</span><a href={p.href}>{p.label}</a></li>)}
+          <li><span>Email</span><a href={`mailto:${firm.email}`}>{firm.email}</a></li>
+        </ul>
+
+        <h3>Office</h3>
+        <address>{firm.address.lines.map((l) => <span>{l}</span>)}</address>
+        <a class="dir" href={firm.mapUrl} target="_blank" rel="noopener"><Icon name="pin" />Get directions in Google Maps</a>
+
+        <h3>Office hours</h3>
+        <table>
+          <caption class="visually-hidden">Office hours</caption>
+          <tbody>{firm.hours.map((h) => <tr><th scope="row">{h.days}</th><td>{h.time}</td></tr>)}</tbody>
+        </table>
+
+        <h3>Clients outside Limpopo</h3>
+        <p>We act for clients anywhere in South Africa. Consultations can be held by phone or video call.</p>
+      </aside>
+    </div>
+  </section>
+</Base>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement | null;
+  const status = document.getElementById('form-status');
+
+  // Result of a submission, passed back by send-contact.php
+  const params = new URLSearchParams(location.search);
+  const messages: Record<string, [string, string]> = {
+    sent: ['ok', 'Message sent. We will contact you within one working day. For anything urgent, call 015 023 1380.'],
+    invalid: ['bad', 'Some details were missing or invalid. Please check the form and send it again.'],
+    send: ['bad', 'Your message could not be sent. Please call 015 023 1380 or email info@mudauattorneys.com.'],
+    wait: ['bad', 'Please wait a minute before sending another message.'],
+  };
+  const key = params.get('sent') === '1' ? 'sent' : params.get('error') ?? '';
+  if (status && messages[key]) {
+    const [kind, text] = messages[key];
+    status.textContent = text;
+    status.className = `status ${kind}`;
+    status.hidden = false;
+    status.setAttribute('tabindex', '-1');
+    status.focus();
+    history.replaceState(null, '', location.pathname);
+  }
+
+  if (form) {
+    (document.getElementById('ts') as HTMLInputElement).value = String(Math.floor(Date.now() / 1000));
+
+    const text: Record<string, string> = {
+      name: 'Enter your full name.',
+      phone: 'Enter a phone number we can call, for example 072 123 4567.',
+      email: 'Enter a valid email address, or leave it empty.',
+      matter: 'Choose what your matter is about.',
+      message: 'Tell us briefly what happened (at least a sentence).',
+      consent: 'Tick the box so we can use your details to respond.',
+    };
+    const fields = Object.keys(text).map((id) => document.getElementById(id) as HTMLInputElement);
+
+    const check = (el: HTMLInputElement) => {
+      const err = document.getElementById(`${el.id}-err`)!;
+      const ok = el.checkValidity();
+      err.textContent = ok ? '' : text[el.id];
+      el.setAttribute('aria-invalid', String(!ok));
+      if (!ok) el.setAttribute('aria-errormessage', err.id); else el.removeAttribute('aria-errormessage');
+      return ok;
+    };
+
+    fields.forEach((el) => el.addEventListener('blur', () => { if (el.value || el.type === 'checkbox') check(el); }));
+    fields.forEach((el) => el.addEventListener('input', () => { if (el.getAttribute('aria-invalid') === 'true') check(el); }));
+
+    form.addEventListener('submit', (e) => {
+      const invalid = fields.filter((el) => !check(el));
+      if (invalid.length) {
+        e.preventDefault();
+        invalid[0].focus();
+        return;
+      }
+      if (form.dataset.review === '1' && status) {
+        e.preventDefault();
+        status.textContent = 'Review copy: the form is filled in correctly. On the live site this message would now be sent.';
+        status.className = 'status ok';
+        status.hidden = false;
+        status.focus();
+        return;
+      }
+      const btn = form.querySelector<HTMLButtonElement>('.submit')!;
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+    });
+  }
+</script>
+
+<style>
+  .contact { display: grid; grid-template-columns: minmax(0, 1.3fr) minmax(0, 1fr); gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .form-col h2 { font-size: var(--step-3); margin-bottom: 1.5rem; }
+
+  .status { padding: 1rem 1.25rem; margin-bottom: 1.5rem; border-left: 5px solid; font-weight: 500; }
+  .status.ok { background: #e8f4ec; border-color: #1d7a3e; color: #12512a; }
+  .status.review { background: #fff6dc; border-color: #b58100; color: #5a4000; }
+  .status.bad { background: #fbeaea; border-color: var(--red-ink); color: #7a0e12; }
+
+  .field { margin-bottom: 1.25rem; }
+  .row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+  label { display: block; font-weight: 600; margin-bottom: 0.4rem; }
+  .opt { font-weight: 400; color: var(--graphite); }
+  input[type='text'], input[type='tel'], input[type='email'], select, textarea {
+    width: 100%;
+    font: inherit;
+    padding: 0.7rem 0.8rem;
+    border: 2px solid #8a8e92;
+    border-radius: 2px;
+    background: var(--paper);
+    color: var(--ink);
+  }
+  textarea { resize: vertical; min-height: 9rem; }
+  input:focus, select:focus, textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 3px rgba(179, 20, 26, 0.35); }
+  [aria-invalid='true'] { border-color: var(--red-ink) !important; }
+  .hint { margin-top: 0.35rem; font-size: var(--step--1); color: var(--graphite); }
+  .err { margin-top: 0.35rem; font-size: var(--step--1); color: var(--red-ink); font-weight: 600; }
+  .err:empty { display: none; }
+
+  .check { display: grid; grid-template-columns: auto 1fr; gap: 0.75rem; align-items: start; }
+  .check input { width: 1.25rem; height: 1.25rem; margin-top: 0.2rem; accent-color: var(--red-ink); }
+  .check label { font-weight: 400; margin: 0; }
+  .check .err { grid-column: 2; }
+
+  .trap { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+  .submit { width: 100%; justify-content: center; }
+  .submit:disabled { opacity: 0.7; cursor: progress; }
+  .small { margin-top: 1rem; font-size: var(--step--1); color: var(--graphite); }
+
+  .details { border-top: 5px solid var(--ink); padding-top: 1.5rem; }
+  .quick { display: grid; gap: 0.75rem; }
+  .quick .btn { justify-content: center; }
+  .list { list-style: none; padding: 0; margin-top: 1.75rem; }
+  .list li { display: grid; grid-template-columns: 5.5rem 1fr; padding-block: 0.7rem; border-bottom: 1px solid var(--rule); }
+  .list span { color: var(--graphite); }
+  .list a { font-weight: 600; overflow-wrap: anywhere; }
+  .details h3 { font-family: var(--sans); font-size: var(--step-0); font-weight: 700; margin-top: 2rem; margin-bottom: 0.5rem; }
+  address { font-style: normal; display: flex; flex-direction: column; font-family: var(--serif); font-size: var(--step-1); line-height: 1.4; }
+  .dir { display: inline-flex; align-items: center; gap: 0.4rem; margin-top: 0.75rem; font-weight: 600; }
+  .dir :global(svg) { width: 1.1rem; }
+  table { border-collapse: collapse; font-size: var(--step--1); }
+  th { text-align: left; font-weight: 400; color: var(--graphite); padding: 0.25rem 1.5rem 0.25rem 0; }
+  td { font-weight: 600; }
+  .details p { color: var(--graphite); }
+
+  @media (max-width: 60rem) { .contact { grid-template-columns: 1fr; } }
+  @media (max-width: 34rem) { .row { grid-template-columns: 1fr; gap: 0; } }
+</style>

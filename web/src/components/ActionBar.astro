@@ -1,0 +1,38 @@
+---
+// Fixed call / WhatsApp bar on phones, where most visitors arrive.
+import Icon from './Icon.astro';
+import { firm } from '../data/site';
+---
+<div class="action-bar" role="region" aria-label="Quick contact">
+  <a href={firm.phones[1].href}><Icon name="phone" />Call</a>
+  <a href={firm.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp</a>
+</div>
+
+<style>
+  .action-bar { display: none; }
+  @media (max-width: 48rem) {
+    .action-bar {
+      position: fixed;
+      inset: auto 0 0 0;
+      z-index: 60;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--ink);
+      border-top: 3px solid var(--red);
+      padding-bottom: env(safe-area-inset-bottom);
+    }
+    .action-bar a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      min-height: 3.5rem;
+      color: var(--paper);
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .action-bar a + a { background: var(--red-ink); }
+    .action-bar :global(svg) { width: 1.25rem; height: 1.25rem; }
+    :global(body) { padding-bottom: 3.6rem; }
+  }
+</style>

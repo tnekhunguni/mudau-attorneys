@@ -1,0 +1,109 @@
+---
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import Icon from '../../components/Icon.astro';
+import { practices, type Practice } from '../../data/practice';
+
+export function getStaticPaths() {
+  return practices.map((p) => ({ params: { slug: p.slug }, props: { practice: p } }));
+}
+
+const { practice } = Astro.props as { practice: Practice };
+const related = practices.filter((p) => p.group === practice.group && p.slug !== practice.slug);
+const audience = practice.group === 'people' ? 'For you and your family' : 'For employers, businesses and public bodies';
+---
+<Base title={`${practice.name} | Mudau Makondelele Attorneys`} description={practice.description}>
+  <PageHeader
+    title={practice.name}
+    lede={practice.intro}
+    crumbs={[{ href: '/practice-areas/', label: 'Practice areas' }]}
+  />
+
+  <section class="section">
+    <div class="wrap layout">
+      <div class="main">
+        <h2>How we can help</h2>
+        <ul class="ticks">
+          {practice.services.map((s) => <li>{s}</li>)}
+        </ul>
+
+        {practice.timeLimits && (
+          <div class="limits">
+            <h2>Time limits that apply</h2>
+            <p class="limits-intro">
+              Claims and disputes lapse if they aren't started in time. Contact us early, even if you are
+              not sure you have a case.
+            </p>
+            <dl>
+              {practice.timeLimits.map((t) => (
+                <div><dt>{t.title}</dt><dd>{t.detail}</dd></div>
+              ))}
+            </dl>
+            <p class="small">These are the general rules. Exceptions apply, so we will confirm the dates for your matter.</p>
+          </div>
+        )}
+
+        {practice.bring && (
+          <>
+            <h2>What to bring to your first consultation</h2>
+            <ul class="ticks">
+              {practice.bring.map((b) => <li>{b}</li>)}
+            </ul>
+            <p class="small">Don't have everything? Come anyway. We can help you get the rest.</p>
+          </>
+        )}
+      </div>
+
+      <aside class="side" aria-label="Related practice areas">
+        <p class="side-h">{audience}</p>
+        <ul>
+          {related.map((r) => (
+            <li><a href={`/practice-areas/${r.slug}/`}>{r.name}<Icon name="chevron" /></a></li>
+          ))}
+        </ul>
+        <a class="all" href="/practice-areas/">All practice areas</a>
+      </aside>
+    </div>
+  </section>
+
+  <CtaBand />
+</Base>
+
+<style>
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 20rem; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+  .main h2 { font-size: var(--step-3); margin-top: 3rem; }
+  .main h2:first-child { margin-top: 0; }
+  .ticks { list-style: none; padding: 0; margin-top: 1.25rem; display: grid; gap: 0.7rem; max-width: var(--measure); }
+  .ticks li { position: relative; padding-left: 1.6rem; }
+  .ticks li::before {
+    content: '';
+    position: absolute; left: 0; top: 0.5em;
+    width: 0.6rem; height: 0.65rem;
+    background: var(--red);
+    clip-path: polygon(0 0, 45% 0, 100% 50%, 45% 100%, 0 100%, 55% 50%);
+  }
+  .limits { margin-top: 3rem; border-left: 5px solid var(--red); background: var(--mist); padding: 1.75rem 1.75rem 1.5rem; }
+  .limits h2 { margin-top: 0; }
+  .limits-intro { margin-top: 0.75rem; }
+  .limits dl { margin-top: 1.25rem; display: grid; gap: 1rem; }
+  .limits dt { font-weight: 700; }
+  .limits dd { margin-top: 0.15rem; }
+  .small { margin-top: 1rem; font-size: var(--step--1); color: var(--graphite); }
+
+  .side { position: sticky; top: 7rem; border-top: 5px solid var(--ink); padding-top: 1rem; }
+  .side-h { font-weight: 700; }
+  .side ul { list-style: none; padding: 0; margin-top: 0.5rem; }
+  .side li { border-bottom: 1px solid var(--rule); }
+  .side li a {
+    display: flex; justify-content: space-between; align-items: center; gap: 0.75rem;
+    padding-block: 0.8rem; color: var(--ink); text-decoration: none; font-family: var(--serif);
+  }
+  .side li a:hover { color: var(--red-ink); }
+  .side :global(svg) { width: 1.1rem; flex: none; color: var(--red-ink); }
+  .all { display: inline-block; margin-top: 1rem; font-weight: 600; }
+  @media (max-width: 60rem) {
+    .layout { grid-template-columns: 1fr; }
+    .side { position: static; }
+  }
+</style>
