@@ -7,8 +7,8 @@ import { practices } from '../data/practice';
 const review = import.meta.env.PUBLIC_REVIEW === '1';
 ---
 <Base
-  title="Contact | Mudau Makondelele Attorneys, Thohoyandou"
-  description="Contact Mudau Makondelele Attorneys at Stand 709, Madanzhe Street, P West, Thohoyandou. Call 015 023 1380, WhatsApp 072 054 0722 or send a message."
+  title="Contact | Mudau Makondelele Attorneys, Thohoyandou, Limpopo"
+  description="Contact Mudau Makondelele Attorneys at Stand 709, Madanzhe Street, P West, Thohoyandou, Limpopo. Call 015 023 1380, WhatsApp 072 054 0722 or send a message."
 >
   <PageHeader
     title="Contact us"
@@ -96,7 +96,7 @@ const review = import.meta.env.PUBLIC_REVIEW === '1';
       <aside class="details" aria-labelledby="details-h">
         <h2 id="details-h" class="visually-hidden">Contact details</h2>
         <div class="quick">
-          <a class="btn btn-red" href={firm.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp 072 054 0722</a>
+          <a class="btn btn-whatsapp" href={firm.whatsapp} target="_blank" rel="noopener"><Icon name="whatsapp" />WhatsApp 072 054 0722</a>
           <a class="btn btn-line" href={firm.phones[0].href}><Icon name="phone" />Call {firm.phones[0].label}</a>
         </div>
 

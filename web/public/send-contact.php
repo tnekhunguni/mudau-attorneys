@@ -20,7 +20,8 @@ const MIN_SECONDS = 3;    // forms filled faster than this are bots
 
 // Keep in sync with src/data/practice.ts
 const MATTERS = [
-    'criminal-defence'   => 'Criminal defence',
+    'criminal-litigation' => 'Criminal litigation',
+    'civil-litigation'   => 'Civil litigation',
     'labour-disputes'    => 'Dismissals and workplace disputes',
     'medical-negligence' => 'Medical negligence',
     'personal-injury'    => 'Personal injury and unlawful arrest',

@@ -12,6 +12,9 @@
   --mist: #eef0f1;
   --graphite: #45484b;   /* secondary text, 9:1 on white */
   --rule: #d5d8da;
+  --whatsapp: #25d366;       /* WhatsApp brand green */
+  --whatsapp-hover: #1ebe5d;
+  --whatsapp-ink: #062b14;   /* 9:1 on the green */
 
   --serif: 'Libre Caslon Text', Georgia, 'Times New Roman', serif;
   --sans: 'Public Sans Variable', 'Segoe UI', system-ui, sans-serif;
@@ -116,6 +119,8 @@ a:hover { color: var(--red-ink-hover); }
 .btn svg { width: 1.15em; height: 1.15em; flex: none; }
 .btn-red { background: var(--red-ink); color: var(--paper); }
 .btn-red:hover { background: var(--red-ink-hover); color: var(--paper); }
+.btn-whatsapp { background: var(--whatsapp); color: var(--whatsapp-ink); }
+.btn-whatsapp:hover { background: var(--whatsapp-hover); color: var(--whatsapp-ink); }
 .btn-line { border-color: var(--ink); color: var(--ink); }
 .btn-line:hover { background: var(--ink); color: var(--paper); }
 .btn-light { border-color: var(--paper); color: var(--paper); }

@@ -17,6 +17,7 @@ Options -Indexes
   RewriteRule ^about\.html$ /about/ [R=301,L]
   RewriteRule ^services\.html$ /practice-areas/ [R=301,L]
   RewriteRule ^contact\.html$ /contact/ [R=301,L]
+  RewriteRule ^practice-areas/criminal-defence/?$ /practice-areas/criminal-litigation/ [R=301,L]
 </IfModule>
 
 <IfModule mod_headers.c>

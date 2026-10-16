@@ -23,7 +23,7 @@ export const firm = {
   mapUrl: 'https://www.google.com/maps/search/?api=1&query=' +
     encodeURIComponent('Stand 709 Madanzhe Street, P West, Thohoyandou'),
   hours: [
-    { days: 'Monday to Friday', time: '08:00 to 17:00' },
+    { days: 'Monday to Friday', time: '08:00 – 16:30' },
     { days: 'Saturday', time: 'By appointment' },
     { days: 'Sunday and public holidays', time: 'Closed' },
   ],
@@ -34,11 +34,11 @@ export const timeline = [
   { when: '2012', what: 'LLB, University of Venda' },
   {
     when: '2013 to 2015',
-    what: 'Practical legal training at the Polokwane School for Legal Practice, articles with Legal Aid South Africa, then litigation work in Johannesburg',
+    what: 'Practical legal training at the Polokwane School for Legal Practice, articles with Legal Aid South Africa, then litigation work in Gauteng Province',
   },
   { when: '2015 to 2025', what: 'Co-founder and Director, Mudau & Netshipise Attorneys' },
   { when: '2018 to 2023', what: 'Black Lawyers Association, Gauteng: Head of Events and Campaigns, then Treasurer' },
-  { when: '2025', what: 'Opens Mudau Makondelele Attorneys in Thohoyandou' },
+  { when: '2025', what: 'Opens Mudau Makondelele Attorneys in Thohoyandou, Limpopo Province' },
 ];
 
 // How a matter runs, taken from the firm's documented workflow.

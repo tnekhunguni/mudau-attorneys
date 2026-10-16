@@ -43,6 +43,7 @@ const year = new Date().getFullYear();
       Registered with the Legal Practice Council and the Legal Practitioners Fidelity Fund.
     </p>
     <p>Information on this website is general and is not legal advice for your particular matter.</p>
+    <p class="credit">Powered by <a href="https://saloui.co.za" target="_blank" rel="noopener">SALOUI</a></p>
   </div>
 </footer>
 
@@ -88,6 +89,8 @@ const year = new Date().getFullYear();
     gap: 0.4rem;
   }
   .legal p { max-width: none; }
+  .credit { margin-top: 0.6rem; }
+  .credit a { color: #e6e7e8; font-weight: 600; text-decoration: underline; text-underline-offset: 0.2em; }
   @media (max-width: 52rem) {
     .grid { grid-template-columns: 1fr 1fr; }
     .f-brand { grid-column: 1 / -1; }

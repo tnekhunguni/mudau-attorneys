@@ -15,9 +15,9 @@ export type Practice = {
 
 export const practices: Practice[] = [
   {
-    slug: 'criminal-defence',
+    slug: 'criminal-litigation',
     group: 'people',
-    name: 'Criminal defence',
+    name: 'Criminal litigation',
     summary: 'Bail applications, trials, representations to the NPA and appeals.',
     intro:
       'If you or a family member has been arrested or charged, the first days matter most. We advise on your rights, apply for bail and represent you through to trial, sentence and appeal.',
@@ -36,7 +36,7 @@ export const practices: Practice[] = [
       'Names and numbers of any witnesses',
       'Your next court date, if one has been set',
     ],
-    description: 'Criminal defence attorneys in Thohoyandou: bail applications, trials, representations to the NPA and appeals.',
+    description: 'Criminal litigation attorneys in Thohoyandou, Limpopo: bail applications, trials, representations to the NPA and appeals.',
   },
   {
     slug: 'labour-disputes',
@@ -48,7 +48,7 @@ export const practices: Practice[] = [
     services: [
       'Unfair dismissal and unfair labour practice disputes',
       'Representation at conciliation and arbitration',
-      'Disputes before bargaining councils, including MIBCO matters in the motor industry',
+      'Disputes before bargaining councils',
       'Labour Court referrals, reviews and applications',
       'Advice on retirement fund, pension and medical aid rights',
       'Reviewing settlement and separation agreements before you sign',
@@ -64,7 +64,34 @@ export const practices: Practice[] = [
       'Minutes or notes from any disciplinary hearing',
       'Any messages or emails relevant to the dispute',
     ],
-    description: 'Unfair dismissal and labour dispute attorneys in Thohoyandou: CCMA, bargaining council and Labour Court representation.',
+    description: 'Unfair dismissal and labour dispute attorneys in Thohoyandou, Limpopo: CCMA, bargaining council and Labour Court representation.',
+  },
+  {
+    slug: 'civil-litigation',
+    group: 'people',
+    name: 'Civil litigation',
+    summary: 'Disputes over money, contracts and property, and defending a summons against you.',
+    intro:
+      'If someone owes you money, has broken an agreement with you, or has issued a summons against you, we explain your options and represent you in the Magistrate\'s Courts and the High Court.',
+    services: [
+      'Claims for money owed and breach of contract',
+      'Defending a summons or a claim against you',
+      'Setting aside (rescinding) judgments granted against you',
+      'Property, building and neighbour disputes',
+      'Claims for damages',
+      'Settlement negotiations and mediation',
+    ],
+    timeLimits: [
+      { title: 'If you received a summons', detail: 'You generally have 10 court days to give notice that you intend to defend it, or judgment can be granted against you.' },
+      { title: 'Claiming money owed', detail: 'Most ordinary debts prescribe 3 years after they became due.' },
+    ],
+    bring: [
+      'The summons, letter of demand or court papers you received',
+      'Any written agreement, quote or invoice',
+      'Proof of payments and relevant messages or emails',
+      'Your ID',
+    ],
+    description: 'Civil litigation attorneys in Thohoyandou, Limpopo: money claims, contract and property disputes, and defending a summons.',
   },
   {
     slug: 'medical-negligence',
@@ -91,7 +118,7 @@ export const practices: Practice[] = [
       'Names of the facility and, if known, the doctors or nurses involved',
       'Any medical reports or death certificate',
     ],
-    description: 'Medical negligence attorneys in Thohoyandou: claims against public and private hospitals and clinics.',
+    description: 'Medical negligence attorneys in Thohoyandou, Limpopo: claims against public and private hospitals and clinics.',
   },
   {
     slug: 'personal-injury',
@@ -140,7 +167,7 @@ export const practices: Practice[] = [
       'Any existing court orders or maintenance orders',
       'For estates: the death certificate and any will',
     ],
-    description: 'Family law, divorce, maintenance, wills and deceased estates attorneys in Thohoyandou.',
+    description: 'Family law, divorce, maintenance, wills and deceased estates attorneys in Thohoyandou, Limpopo.',
   },
   {
     slug: 'employment-law',
@@ -175,7 +202,7 @@ export const practices: Practice[] = [
       'Contract and property disputes',
       'Mediation and arbitration',
     ],
-    description: "Civil litigation attorneys in Thohoyandou acting in the Magistrate's Courts and High Court across South Africa.",
+    description: "Civil litigation attorneys in Thohoyandou, Limpopo, acting in the Magistrate's Courts and High Court across South Africa.",
   },
   {
     slug: 'commercial-law',
@@ -200,7 +227,7 @@ export const practices: Practice[] = [
     name: 'Debt recovery',
     summary: 'Letters of demand, acknowledgements of debt, default judgments, execution and section 65 enquiries.',
     intro:
-      'We recover money owed to businesses, institutions and individuals, from the first letter of demand to execution against the debtor.',
+      'We recover money owed to businesses, institutions and individuals, from the first letter of demand to execution against the debtor. The firm is registered with the Council for Debt Collectors.',
     services: [
       'Letters of demand and notices under the National Credit Act',
       'Acknowledgements of debt and payment arrangements',
@@ -209,7 +236,7 @@ export const practices: Practice[] = [
       'Section 65 financial enquiries',
       'Listing defaulters with credit bureaus',
     ],
-    description: 'Debt collection and recovery attorneys in Thohoyandou: demands, default judgments, execution and section 65 enquiries.',
+    description: 'Debt collection and recovery attorneys in Thohoyandou, Limpopo: demands, default judgments, execution and section 65 enquiries.',
   },
   {
     slug: 'public-sector',
