@@ -84,4 +84,10 @@ export const clients = [
   'Nungo Health Foods',
   'Takalani Computer Solutions',
   'Debt Guides',
+  'LegalWise',
+  'SAPU',
+  'State Attorney, Thohoyandou',
+  'Legal Brilliance',
+  'Lejweleputswa District Municipality',
+  'KwaZulu-Natal Department of Public Works and Infrastructure',
 ];
