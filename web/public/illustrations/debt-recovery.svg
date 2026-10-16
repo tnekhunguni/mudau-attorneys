@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="t"><title id="t">Invoice marked overdue beside a stack of coins</title>
+<rect width="480" height="360" fill="#eef0f1"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M110 50 L290 50 L290 320 L270 305 L250 320 L230 305 L210 320 L190 305 L170 320 L150 305 L130 320 L110 305 Z" fill="#fff"/>
+<rect x="135" y="80" width="90" height="14" fill="#000" stroke="none"/>
+<line x1="135" y1="130" x2="265" y2="130" stroke-width="5"/><line x1="135" y1="155" x2="265" y2="155" stroke-width="5"/><line x1="135" y1="180" x2="265" y2="180" stroke-width="5"/>
+<rect x="130" y="215" width="140" height="40" fill="#ef363a"/>
+<ellipse cx="370" cy="300" rx="62" ry="18" fill="#8a8e92"/><ellipse cx="370" cy="274" rx="62" ry="18" fill="#fff"/><ellipse cx="370" cy="248" rx="62" ry="18" fill="#8a8e92"/><ellipse cx="370" cy="222" rx="62" ry="18" fill="#fff"/><ellipse cx="370" cy="196" rx="62" ry="18" fill="#8a8e92"/>
+<ellipse cx="370" cy="170" rx="62" ry="18" fill="#ef363a"/></g></svg>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="t"><title id="t">Government office building with a flag and tender folders</title>
+<rect width="480" height="360" fill="#eef0f1"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="70" y="120" width="230" height="190" fill="#fff"/>
+<rect x="95" y="150" width="34" height="34" fill="#eef0f1"/><rect x="95" y="210" width="34" height="34" fill="#eef0f1"/><rect x="165" y="150" width="34" height="34" fill="#eef0f1"/><rect x="165" y="210" width="34" height="34" fill="#eef0f1"/><rect x="235" y="150" width="34" height="34" fill="#eef0f1"/><rect x="235" y="210" width="34" height="34" fill="#eef0f1"/>
+<rect x="160" y="262" width="50" height="48" fill="#000"/>
+<rect x="55" y="105" width="260" height="18" fill="#000"/>
+<line x1="185" y1="105" x2="185" y2="40"/><path d="M185 42 L245 52 L185 64 Z" fill="#ef363a"/>
+<rect x="330" y="200" width="110" height="110" fill="#000"/>
+<rect x="320" y="180" width="110" height="110" fill="#fff"/>
+<path d="M320 180 L350 165 L395 165 L405 180" fill="#ef363a"/>
+<line x1="340" y1="215" x2="410" y2="215" stroke-width="5"/><line x1="340" y1="240" x2="410" y2="240" stroke-width="5"/><line x1="340" y1="265" x2="410" y2="265" stroke-width="5"/></g></svg>

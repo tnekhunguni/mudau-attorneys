@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="t"><title id="t">Car on a road behind a red warning triangle</title>
+<rect width="480" height="360" fill="#eef0f1"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M0 300 L480 300 L480 360 L0 360 Z" fill="#000" stroke="none"/>
+<rect x="20" y="325" width="40" height="8" fill="#fff" stroke="none"/><rect x="100" y="325" width="40" height="8" fill="#fff" stroke="none"/><rect x="180" y="325" width="40" height="8" fill="#fff" stroke="none"/><rect x="260" y="325" width="40" height="8" fill="#fff" stroke="none"/><rect x="340" y="325" width="40" height="8" fill="#fff" stroke="none"/><rect x="420" y="325" width="40" height="8" fill="#fff" stroke="none"/>
+<path d="M70 250 L100 190 C110 172 125 165 145 165 L245 165 C262 165 275 172 290 190 L325 225 L365 235 C380 240 385 250 385 262 L385 280 L70 280 Z" fill="#fff"/>
+<path d="M120 225 L135 192 L195 192 L195 225 Z M215 225 L215 192 L262 192 L290 225 Z" fill="#eef0f1"/>
+<circle cx="135" cy="282" r="26" fill="#000"/><circle cx="135" cy="282" r="10" fill="#fff" stroke="none"/>
+<circle cx="320" cy="282" r="26" fill="#000"/><circle cx="320" cy="282" r="10" fill="#fff" stroke="none"/>
+<path d="M415 140 L460 222 L370 222 Z" fill="#ef363a"/><path d="M415 165 L440 210 L390 210 Z" fill="none" stroke="#fff" stroke-width="5"/></g></svg>

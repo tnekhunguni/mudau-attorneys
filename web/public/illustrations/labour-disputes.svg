@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="t"><title id="t">Cardboard box packed with desk belongings</title>
+<rect width="480" height="360" fill="#eef0f1"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<path d="M120 170 L360 170 L340 310 L140 310 Z" fill="#d9a066"/>
+<path d="M120 170 L90 130 L200 130 L230 170 Z" fill="#c78a4f"/>
+<path d="M360 170 L390 130 L280 130 L250 170 Z" fill="#c78a4f"/>
+<line x1="200" y1="225" x2="280" y2="225"/>
+<rect x="150" y="90" width="70" height="80" fill="#fff"/><rect x="164" y="104" width="42" height="40" fill="#ef363a" stroke="none"/>
+<path d="M300 170 L300 120" /><path d="M300 130 C270 110 265 85 280 75 C300 90 305 110 300 130" fill="#000"/>
+<path d="M300 140 C330 120 340 95 325 85 C305 100 298 120 300 140" fill="#000"/>
+<rect x="240" y="120" width="40" height="50" fill="#fff"/><path d="M280 132 C298 132 298 158 280 158" fill="none"/></g></svg>

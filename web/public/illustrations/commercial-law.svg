@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img" aria-labelledby="t"><title id="t">Signed contract with a fountain pen and red stamp</title>
+<rect width="480" height="360" fill="#eef0f1"/>
+<g stroke="#000" stroke-width="6" stroke-linejoin="round" stroke-linecap="round">
+<rect x="80" y="50" width="210" height="270" fill="#fff"/>
+<line x1="110" y1="90" x2="220" y2="90" stroke-width="5"/><line x1="110" y1="112" x2="260" y2="112" stroke-width="5"/><line x1="110" y1="134" x2="260" y2="134" stroke-width="5"/><line x1="110" y1="156" x2="260" y2="156" stroke-width="5"/><line x1="110" y1="178" x2="220" y2="178" stroke-width="5"/><line x1="110" y1="200" x2="260" y2="200" stroke-width="5"/>
+<line x1="110" y1="280" x2="200" y2="280" stroke-width="4"/>
+<path d="M115 268 C130 245 140 285 155 262 C165 248 172 272 190 258" fill="none" stroke="#ef363a" stroke-width="5"/>
+<g transform="rotate(35 330 140)"><rect x="315" y="40" width="30" height="140" rx="8" fill="#000"/><path d="M315 180 L330 222 L345 180 Z" fill="#8a8e92"/></g>
+<rect x="320" y="260" width="110" height="56" fill="#ef363a"/><rect x="355" y="212" width="40" height="50" fill="#000"/></g></svg>
