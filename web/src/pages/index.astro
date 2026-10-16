@@ -8,6 +8,9 @@ import PracticeIndex from '../components/PracticeIndex.astro';
 import Timeline from '../components/Timeline.astro';
 import Steps from '../components/Steps.astro';
 import Credentials from '../components/Credentials.astro';
+import InsightList from '../components/InsightList.astro';
+import { getInsights } from '../data/insights';
+const latest = (await getInsights()).slice(0, 3);
 
 ---
 <Base
@@ -113,6 +116,18 @@ import Credentials from '../components/Credentials.astro';
     </div>
   </section>
 
+  {latest.length > 0 && (
+    <section class="section section-mist" aria-labelledby="insights-h">
+      <div class="wrap">
+        <div class="section-head split">
+          <h2 id="insights-h">Insights</h2>
+          <a class="btn btn-line" href="/insights/">All articles</a>
+        </div>
+        <InsightList items={latest} />
+      </div>
+    </section>
+  )}
+
   <!-- Organisations -->
   <section class="section orgs" aria-labelledby="orgs-h">
     <div class="wrap orgs-grid">
@@ -166,6 +181,8 @@ import Credentials from '../components/Credentials.astro';
 </Base>
 
 <style>
+  .split { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 1rem; }
+
   /* Hero */
   .hero { position: relative; overflow: hidden; }
   .hero-grid {

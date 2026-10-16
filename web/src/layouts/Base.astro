@@ -5,17 +5,30 @@ import Footer from '../components/Footer.astro';
 import ActionBar from '../components/ActionBar.astro';
 import { firm } from '../data/site';
 
-interface Props { title: string; description: string; image?: string }
-const { title, description, image = '/og-image.jpg' } = Astro.props;
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  schema?: Record<string, unknown>[]; // extra JSON-LD blocks for this page
+}
+const { title, description, image = '/og-image.jpg', type = 'website', schema: extra = [] } = Astro.props;
 const canonical = new URL(Astro.url.pathname, firm.url).href;
 // Review builds (PUBLIC_REVIEW=1) are hidden from search engines
 const review = import.meta.env.PUBLIC_REVIEW === '1';
+// Cookie-free visitor statistics (Cloudflare Web Analytics). Off unless a token is set at build time.
+const analyticsToken = import.meta.env.PUBLIC_CF_ANALYTICS_TOKEN;
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'LegalService',
+  '@id': `${firm.url}/#firm`,
   name: firm.name,
   url: firm.url,
+  logo: `${firm.url}/apple-touch-icon.png`,
+  image: `${firm.url}/og-image.jpg`,
+  hasMap: firm.mapUrl,
+  sameAs: firm.profiles.length ? firm.profiles : undefined,
   email: firm.email,
   telephone: '+27150231380',
   slogan: firm.tagline,
@@ -27,9 +40,26 @@ const schema = {
     postalCode: firm.address.postalCode,
     addressCountry: firm.address.country,
   },
-  areaServed: 'ZA',
+  areaServed: [{ '@type': 'AdministrativeArea', name: 'Limpopo' }, { '@type': 'Country', name: 'South Africa' }],
   openingHours: 'Mo-Fr 08:00-16:30',
-  founder: { '@type': 'Person', name: firm.director, jobTitle: 'Director' },
+  founder: { '@id': `${firm.url}/#director` },
+  employee: { '@id': `${firm.url}/#director` },
+};
+
+const director = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${firm.url}/#director`,
+  name: firm.director,
+  honorificPrefix: 'Mr',
+  jobTitle: 'Director and Attorney',
+  worksFor: { '@id': `${firm.url}/#firm` },
+  alumniOf: [
+    { '@type': 'CollegeOrUniversity', name: 'University of Venda' },
+    { '@type': 'EducationalOrganization', name: 'Polokwane School for Legal Practice' },
+  ],
+  memberOf: { '@type': 'Organization', name: 'Black Lawyers Association' },
+  url: `${firm.url}/about/`,
 };
 ---
 <!doctype html>
@@ -45,7 +75,7 @@ const schema = {
     <meta name="theme-color" content="#000000" />
     {review && <meta name="robots" content="noindex, nofollow" />}
 
-    <meta property="og:type" content="website" />
+    <meta property="og:type" content={type} />
     <meta property="og:site_name" content={firm.name} />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -55,6 +85,8 @@ const schema = {
     <meta name="twitter:card" content="summary_large_image" />
 
     <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(director)} />
+    {extra.map((s) => <script type="application/ld+json" set:html={JSON.stringify(s)} />)}
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -64,5 +96,13 @@ const schema = {
     </main>
     <Footer />
     <ActionBar />
+    {analyticsToken && !review && (
+      <script
+        is:inline
+        defer
+        src="https://static.cloudflareinsights.com/beacon.min.js"
+        data-cf-beacon={JSON.stringify({ token: analyticsToken })}
+      />
+    )}
   </body>
 </html>

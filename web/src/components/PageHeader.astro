@@ -1,8 +1,21 @@
 ---
 // Inner-page header: breadcrumb, title, lede, with a small letterhead corner.
 interface Props { title: string; lede?: string; crumbs?: { href: string; label: string }[] }
+import { firm } from '../data/site';
 const { title, lede, crumbs } = Astro.props;
+const trail = crumbs ? [{ href: '/', label: 'Home' }, ...crumbs, { href: Astro.url.pathname, label: title }] : [];
+const breadcrumbSchema = crumbs && {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: trail.map((c, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: c.label,
+    item: new URL(c.href, firm.url).href,
+  })),
+};
 ---
+{breadcrumbSchema && <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />}
 <section class="page-header">
   <svg class="corner" viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true">
     <polygon class="c-line" points="100,0 100,100 0,100" />

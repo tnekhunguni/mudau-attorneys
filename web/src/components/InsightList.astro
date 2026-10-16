@@ -1,0 +1,35 @@
+---
+import Icon from './Icon.astro';
+import { formatDate, readingTime, type Insight } from '../data/insights';
+interface Props { items: Insight[]; level?: 2 | 3 }
+const { items, level = 3 } = Astro.props;
+const H = `h${level}`;
+---
+<ul class="insights">
+  {items.map((a) => (
+    <li>
+      <a href={`/insights/${a.id}/`}>
+        <span class="meta">
+          <time datetime={a.data.date.toISOString().slice(0, 10)}>{formatDate(a.data.date)}</time>
+          <span>{readingTime(a.body)} min read</span>
+        </span>
+        <H class="t">{a.data.title}</H>
+        <p>{a.data.description}</p>
+        <span class="more">Read the article<Icon name="chevron" /></span>
+      </a>
+    </li>
+  ))}
+</ul>
+
+<style>
+  .insights { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); gap: 2rem; }
+  .insights li { border-top: 5px solid var(--ink); }
+  .insights a { display: flex; flex-direction: column; height: 100%; padding-top: 1rem; color: var(--ink); text-decoration: none; }
+  .meta { display: flex; flex-wrap: wrap; gap: 0.25rem 1rem; font-size: var(--step--1); color: var(--graphite); }
+  .t { margin-top: 0.6rem; font-family: var(--serif); font-weight: 400; font-size: var(--step-2); line-height: 1.25; }
+  p { margin-top: 0.6rem; color: var(--graphite); font-size: var(--step--1); line-height: 1.6; }
+  .more { margin-top: auto; padding-top: 1rem; display: inline-flex; align-items: center; gap: 0.3rem; font-weight: 600; color: var(--red-ink); }
+  .more :global(svg) { width: 1.1rem; transition: transform 0.2s; }
+  a:hover .t { color: var(--red-ink); }
+  a:hover .more :global(svg) { transform: translateX(3px); }
+</style>

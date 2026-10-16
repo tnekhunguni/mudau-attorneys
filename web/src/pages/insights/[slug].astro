@@ -1,0 +1,105 @@
+---
+import { render } from 'astro:content';
+import Base from '../../layouts/Base.astro';
+import PageHeader from '../../components/PageHeader.astro';
+import CtaBand from '../../components/CtaBand.astro';
+import InsightList from '../../components/InsightList.astro';
+import Icon from '../../components/Icon.astro';
+import { getInsights, formatDate, readingTime, type Insight } from '../../data/insights';
+import { practices } from '../../data/practice';
+import { firm } from '../../data/site';
+
+export async function getStaticPaths() {
+  const all = await getInsights();
+  return all.map((a) => ({ params: { slug: a.id }, props: { article: a, all } }));
+}
+
+const { article, all } = Astro.props as { article: Insight; all: Insight[] };
+const { Content } = await render(article);
+const d = article.data;
+const practice = practices.find((p) => p.slug === d.practice);
+const more = all.filter((a) => a.id !== article.id).slice(0, 2);
+const url = new URL(Astro.url.pathname, firm.url).href;
+
+const articleSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: d.title,
+  description: d.description,
+  datePublished: d.date.toISOString(),
+  dateModified: (d.updated ?? d.date).toISOString(),
+  author: d.author === firm.director
+    ? { '@id': `${firm.url}/#director` }
+    : { '@type': 'Person', name: d.author },
+  publisher: { '@id': `${firm.url}/#firm` },
+  mainEntityOfPage: url,
+  image: `${firm.url}/og-image.jpg`,
+  inLanguage: 'en-ZA',
+};
+---
+<Base title={`${d.title} | Mudau Makondelele Attorneys`} description={d.description} type="article" schema={[articleSchema]}>
+  <PageHeader title={d.title} crumbs={[{ href: '/insights/', label: 'Insights' }]}>
+    <p class="byline">
+      By {d.author}
+      <span aria-hidden="true">|</span>
+      <time datetime={d.date.toISOString().slice(0, 10)}>{formatDate(d.date)}</time>
+      <span aria-hidden="true">|</span>
+      {readingTime(article.body)} min read
+    </p>
+  </PageHeader>
+
+  <section class="section">
+    <div class="wrap layout">
+      <article class="prose">
+        <Content />
+      </article>
+      {practice && (
+        <aside class="side" aria-label="Related practice area">
+          <p class="side-h">Related practice area</p>
+          <a class="side-link" href={`/practice-areas/${practice.slug}/`}>
+            {practice.name}<Icon name="chevron" />
+          </a>
+          <p class="side-sum">{practice.summary}</p>
+        </aside>
+      )}
+    </div>
+  </section>
+
+  {more.length > 0 && (
+    <section class="section section-mist" aria-labelledby="more-h">
+      <div class="wrap">
+        <h2 id="more-h" class="more-h">More insights</h2>
+        <InsightList items={more} />
+      </div>
+    </section>
+  )}
+
+  <CtaBand />
+</Base>
+
+<style>
+  .byline { margin-top: 1.25rem; color: var(--graphite); display: flex; flex-wrap: wrap; gap: 0.25rem 0.6rem; }
+  .layout { display: grid; grid-template-columns: minmax(0, 1fr) 18rem; gap: clamp(2rem, 6vw, 5rem); align-items: start; }
+
+  .prose { max-width: 42rem; font-size: 1.05rem; line-height: 1.7; }
+  .prose :global(> * + *) { margin-top: 1.1rem; }
+  .prose :global(h2) { font-size: var(--step-3); margin-top: 2.5rem; }
+  .prose :global(h3) { font-size: var(--step-2); margin-top: 2rem; }
+  .prose :global(ul), .prose :global(ol) { padding-left: 1.3rem; display: grid; gap: 0.5rem; }
+  .prose :global(strong) { font-weight: 700; }
+  .prose :global(em) { color: var(--graphite); }
+  .prose :global(blockquote) { border-left: 5px solid var(--red); padding-left: 1.25rem; font-family: var(--serif); font-size: var(--step-1); }
+
+  .side { position: sticky; top: 7rem; border-top: 5px solid var(--ink); padding-top: 1rem; }
+  .side-h { font-weight: 700; }
+  .side-link { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; margin-top: 0.6rem; font-family: var(--serif); font-size: var(--step-1); color: var(--ink); text-decoration: none; }
+  .side-link:hover { color: var(--red-ink); }
+  .side-link :global(svg) { width: 1.2rem; flex: none; color: var(--red-ink); }
+  .side-sum { margin-top: 0.4rem; font-size: var(--step--1); color: var(--graphite); }
+  .more-h { font-size: var(--step-3); margin-bottom: 2rem; }
+
+  @media (max-width: 60rem) {
+    .layout { grid-template-columns: 1fr; }
+    .side { position: static; }
+  }
+</style>

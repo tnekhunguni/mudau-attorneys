@@ -10,6 +10,7 @@ export type Practice = {
   services: string[];   // what we do
   timeLimits?: { title: string; detail: string }[];
   bring?: string[];     // what to bring to the first consultation
+  faqs?: { q: string; a: string }[]; // shown on the page and as FAQ structured data
   description: string;  // meta description
 };
 
@@ -35,6 +36,10 @@ export const practices: Practice[] = [
       'The case number and the police station handling it',
       'Names and numbers of any witnesses',
       'Your next court date, if one has been set',
+    ],
+    faqs: [
+      { q: "Can I get bail?", a: "Most people charged with an offence can apply for bail. The court considers things like the seriousness of the charge, whether you are likely to stand trial and whether you might interfere with witnesses. For some serious offences you have to show exceptional circumstances or that your release is in the interests of justice, so preparation matters." },
+      { q: "Should I give the police a statement?", a: "You have the right to remain silent and the right to a legal representative. Speak to an attorney before making any statement or signing anything." },
     ],
     description: 'Criminal litigation attorneys in Thohoyandou, Limpopo: bail applications, trials, representations to the NPA and appeals.',
   },
@@ -64,6 +69,10 @@ export const practices: Practice[] = [
       'Minutes or notes from any disciplinary hearing',
       'Any messages or emails relevant to the dispute',
     ],
+    faqs: [
+      { q: "How long do I have to challenge my dismissal?", a: "Refer the dispute to the CCMA or your bargaining council within 30 days of the dismissal. If you are late you must apply for condonation, which is not guaranteed." },
+      { q: "Can an attorney represent me at the CCMA?", a: "Legal representation is generally not allowed at conciliation. At arbitration it depends on the type of dispute and may need the commissioner's agreement. We prepare your case in every forum and represent you wherever the rules allow, including at bargaining councils and the Labour Court." },
+    ],
     description: 'Unfair dismissal and labour dispute attorneys in Thohoyandou, Limpopo: CCMA, bargaining council and Labour Court representation.',
   },
   {
@@ -90,6 +99,10 @@ export const practices: Practice[] = [
       'Any written agreement, quote or invoice',
       'Proof of payments and relevant messages or emails',
       'Your ID',
+    ],
+    faqs: [
+      { q: "What should I do if I receive a summons?", a: "Don't ignore it. You generally have 10 court days to give notice that you intend to defend, otherwise the other side can ask for judgment against you. Bring the summons to us as soon as you receive it." },
+      { q: "Can a judgment against me be set aside?", a: "Often, yes. If judgment was granted without you defending, you can apply to rescind it, generally within 20 court days of finding out about it. You must explain why you didn't defend and show you have a defence." },
     ],
     description: 'Civil litigation attorneys in Thohoyandou, Limpopo: money claims, contract and property disputes, and defending a summons.',
   },
@@ -118,6 +131,10 @@ export const practices: Practice[] = [
       'Names of the facility and, if known, the doctors or nurses involved',
       'Any medical reports or death certificate',
     ],
+    faqs: [
+      { q: "How long do I have to claim?", a: "For claims against a provincial health department, written notice must be given within 6 months. Most claims prescribe 3 years after you knew, or should have known, the facts. Contact us early because records and expert reports take time." },
+      { q: "Do I need to get my medical records myself?", a: "No. We request the records from the hospital or clinic on your behalf, using the Promotion of Access to Information Act where necessary." },
+    ],
     description: 'Medical negligence attorneys in Thohoyandou, Limpopo: claims against public and private hospitals and clinics.',
   },
   {
@@ -144,6 +161,10 @@ export const practices: Practice[] = [
       'Your ID and proof of income before the accident',
       'For unlawful arrest: release documents, charge sheet or court record',
     ],
+    faqs: [
+      { q: "How long do I have to claim from the Road Accident Fund?", a: "Three years from the accident if the driver is known, or two years for a hit-and-run. If the claim is not settled, a summons must generally be issued within five years of the accident." },
+      { q: "Can I claim if I was a passenger or pedestrian?", a: "Yes. Passengers, pedestrians and drivers who were not at fault can claim, as can dependants of a person killed in an accident." },
+    ],
     description: 'Road Accident Fund, unlawful arrest and personal injury attorneys in Thohoyandou, Limpopo.',
   },
   {
@@ -167,6 +188,10 @@ export const practices: Practice[] = [
       'Any existing court orders or maintenance orders',
       'For estates: the death certificate and any will',
     ],
+    faqs: [
+      { q: "What happens if someone dies without a will?", a: "Their estate is divided according to the Intestate Succession Act, which may not match what they would have wanted. A valid will lets you decide who inherits and who administers your estate." },
+      { q: "How is child maintenance decided?", a: "Both parents have a duty to support their children. The Maintenance Court looks at what the child reasonably needs and what each parent can afford." },
+    ],
     description: 'Family law, divorce, maintenance, wills and deceased estates attorneys in Thohoyandou, Limpopo.',
   },
   {
@@ -185,6 +210,10 @@ export const practices: Practice[] = [
       'Employment equity and basic conditions of employment advice',
       'Labour law training for managers and staff',
     ],
+    faqs: [
+      { q: "Can we dismiss an employee without a hearing?", a: "A dismissal must be for a fair reason and follow a fair procedure. That normally means telling the employee what the allegations are and giving them a proper chance to respond. We can chair or initiate the hearing so the process stands up later." },
+      { q: "Is a CCMA arbitration award final?", a: "Yes, it is binding. It can only be taken on review to the Labour Court on limited grounds, generally within six weeks of the award." },
+    ],
     description: 'Employment law for employers in Limpopo: disciplinary hearings, CCMA representation, investigations and policies.',
   },
   {
@@ -201,6 +230,10 @@ export const practices: Practice[] = [
       'Urgent applications and interdicts',
       'Contract and property disputes',
       'Mediation and arbitration',
+    ],
+    faqs: [
+      { q: "Which court will our matter go to?", a: "It depends on the amount claimed and the nature of the dispute. Smaller claims are heard in the Magistrates' Courts and larger or more complex matters in the High Court. We advise on the court that is appropriate and most cost-effective." },
+      { q: "Will you brief an advocate?", a: "Where a matter needs counsel, we brief an advocate only after you have approved it in writing." },
     ],
     description: "Civil litigation attorneys in Thohoyandou, Limpopo, acting in the Magistrate's Courts and High Court across South Africa.",
   },
@@ -219,6 +252,10 @@ export const practices: Practice[] = [
       'Construction and building agreements',
       'Commercial and corporate litigation',
     ],
+    faqs: [
+      { q: "Does an agreement have to be in writing?", a: "Most agreements are valid even if verbal, but some must be in writing to be enforceable, such as the sale of land. A clear written contract prevents disputes about what was agreed." },
+      { q: "Can you help us register a trade mark?", a: "Yes. We advise on trade mark protection and prepare applications to the Companies and Intellectual Property Commission (CIPC)." },
+    ],
     description: 'Commercial and contract attorneys in Limpopo: agreements, governance, board charters and intellectual property.',
   },
   {
@@ -235,6 +272,10 @@ export const practices: Practice[] = [
       'Warrants of execution and attachments',
       'Section 65 financial enquiries',
       'Listing defaulters with credit bureaus',
+    ],
+    faqs: [
+      { q: "When does a debt prescribe?", a: "Most ordinary debts prescribe 3 years after they became due, so act before then. A judgment debt lasts much longer, which is why getting judgment matters." },
+      { q: "What is a section 65 enquiry?", a: "A court process in which a debtor with a judgment against them must disclose their income and expenses. The court can then order them to pay in instalments." },
     ],
     description: 'Debt collection and recovery attorneys in Thohoyandou, Limpopo: demands, default judgments, execution and section 65 enquiries.',
   },
@@ -253,6 +294,10 @@ export const practices: Practice[] = [
       'Reviews of administrative decisions',
       'Constitutionality of legislation and policies',
       'Commentary on national and provincial bills',
+    ],
+    faqs: [
+      { q: "Do you act for municipalities?", a: "Yes. Mr Mudau has acted for municipalities including Thulamela Municipality and the City of Ekurhuleni, and for public institutions such as the University of Venda." },
+      { q: "Can a procurement decision be challenged?", a: "Yes. Bidders can use internal objection processes and, where necessary, apply to the High Court to review the decision. We act for bidders and for organs of state defending their decisions." },
     ],
     description: 'Public sector, procurement, PFMA and administrative law attorneys for municipalities and institutions in Limpopo.',
   },

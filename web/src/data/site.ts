@@ -28,6 +28,8 @@ export const firm = {
     { days: 'Sunday and public holidays', time: 'Closed' },
   ],
   url: 'https://mudauattorneys.com',
+  // Official profiles (Google Business Profile, Facebook, LinkedIn). Add URLs here once they exist.
+  profiles: [] as string[],
 };
 
 export const timeline = [
