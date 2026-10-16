@@ -76,18 +76,12 @@ const path = Astro.url.pathname;
     color: var(--ink);
   }
   .brand img { width: 3.1rem; height: auto; }
-  .wordmark { display: flex; flex-direction: column; line-height: 1.05; }
-  .wm-name {
+  .wordmark { display: flex; flex-direction: column; line-height: 1.15; }
+  .wm-name, .wm-sub {
     font-family: var(--serif);
     font-weight: 700;
     font-size: 1.15rem;
     letter-spacing: 0.02em;
-  }
-  .wm-sub {
-    font-family: var(--serif);
-    font-weight: 700;
-    font-size: 0.85rem;
-    letter-spacing: 0.32em;
     color: var(--ink);
   }
 
@@ -144,7 +138,7 @@ const path = Astro.url.pathname;
     .nav-call .btn { width: 100%; justify-content: center; }
   }
   @media (max-width: 26rem) {
-    .wm-name { font-size: 1rem; }
+    .wm-name, .wm-sub { font-size: 1rem; }
     .brand img { width: 2.6rem; }
   }
 </style>
