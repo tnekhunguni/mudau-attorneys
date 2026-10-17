@@ -26,13 +26,17 @@ npm run build      # static output in dist/, upload its contents to the host
 - To do: client logos, Google Business Profile link, more articles.
 - Later: move hosting to Vercel alongside the case management app.
 
-## Deploying to the current host (cPanel)
+## Publishing to mudauattorneys.com (Plesk)
 
-1. `npm run build`
-2. Back up the current `public_html`.
-3. Upload the **contents** of `dist/` (including the hidden `.htaccess`) to `public_html`, replacing the old `index.html`, `about.html`, `services.html`, `contact.html`, `styles.css`, `main.js` and `send-contact.php`.
-4. Visit an old address such as `/services.html`: it should redirect to `/practice-areas/`.
-5. Send a test enquiry from `/contact/` and confirm it arrives at info@mudauattorneys.com.
+The live site is hosted on Plesk, which deploys the `live` branch of this repo to `httpdocs` (Websites & Domains > Git).
+The `live` branch holds only the built site; never edit it by hand.
+
+1. Make and check changes on the `redesign` branch (`npm run dev`).
+2. From the `web/` folder run `bash scripts/publish-live.sh`. It builds the production site and pushes it to `live`.
+3. In Plesk, open Websites & Domains > Git and click **Pull now**. Plesk deploys it to `httpdocs` automatically.
+4. Check https://mudauattorneys.com.
+
+The Vercel project `mudau-attorneys` is a review copy only (search engines blocked, form disabled).
 
 ## Contact form
 
