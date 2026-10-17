@@ -12,6 +12,14 @@ declare(strict_types=1);
 
 date_default_timezone_set('Africa/Johannesburg');
 
+// Some shared hosts run without the mbstring extension
+if (!function_exists('mb_substr')) {
+    function mb_substr(string $s, int $start, ?int $len = null): string { return $len === null ? substr($s, $start) : substr($s, $start, $len); }
+}
+if (!function_exists('mb_strlen')) {
+    function mb_strlen(string $s): int { return strlen($s); }
+}
+
 const RECIPIENT   = 'info@mudauattorneys.com';
 const FROM        = 'no-reply@mudauattorneys.com';
 const BACK        = '/contact/';
